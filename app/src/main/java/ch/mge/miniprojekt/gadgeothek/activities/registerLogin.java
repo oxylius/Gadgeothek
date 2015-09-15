@@ -10,20 +10,18 @@ import android.widget.Button;
 
 import ch.mge.miniprojekt.gadgeothek.R;
 
-public class MainActivity extends AppCompatActivity {
+public class registerLogin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = new Button(this);
-        button.setText("Login");
-        setContentView(button);
+        setContentView(R.layout.activity_register_login);
 
+        Button button  = (Button) findViewById(R.id.backButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, registerLogin.class);
+                Intent intent = new Intent(registerLogin.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_register_login, menu);
         return true;
     }
 
