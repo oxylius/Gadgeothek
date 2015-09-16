@@ -33,13 +33,5 @@
         android:layout_below="@id/password"
         android:text="Login"
         android:id="@+id/loginButton"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/loginButton"
-        android:text="Back"
-        android:id="@+id/backButton"/>
-
 
 </RelativeLayout>

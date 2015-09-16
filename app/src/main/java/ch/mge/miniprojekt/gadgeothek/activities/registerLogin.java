@@ -1,14 +1,19 @@
 package ch.mge.miniprojekt.gadgeothek.activities;
 
-import android.content.Intent;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import ch.mge.miniprojekt.gadgeothek.R;
+import ch.mge.miniprojekt.gadgeothek.service.Callback;
+import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
 public class registerLogin extends AppCompatActivity {
 
@@ -17,12 +22,47 @@ public class registerLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_login);
 
-        Button button  = (Button) findViewById(R.id.backButton);
+        Button button  = (Button) findViewById(R.id.loginButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(registerLogin.this, MainActivity.class);
-                startActivity(intent);
+                LibraryService.login(email, password, new Callback<Boolean>() {
+                    @Override
+                    public void onCompletion(Boolean success) {
+                        if (success) {
+                            // Jetzt sind wir eingeloggt
+                        } else {
+                            // Passwort war falsch oder User unbekannt.
+                        }
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        // Fehler z.B. in einem Toast/Snackbar darstellen
+                    }
+                });
+            }
+        });
+
+        //password button input validation
+        final EditText password = (EditText) findViewById(R.id.password);
+        password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String pw = s.toString();
+                if(s.length() < 8) {
+                    password.setError("Passwort muss min. 8 Zeichen lang sein.");
+                }
             }
         });
     }
