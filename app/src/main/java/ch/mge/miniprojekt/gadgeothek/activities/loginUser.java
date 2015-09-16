@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import ch.mge.miniprojekt.gadgeothek.R;
@@ -33,23 +32,22 @@ public class loginUser extends AppCompatActivity {
         lButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText tvEmail = (EditText) findViewById(R.id.email);
-                EditText tvPassword = (EditText) findViewById(R.id.password);
+                EditText tvEmail = (EditText) findViewById(R.id.EditTextMail);
+                EditText tvPassword = (EditText) findViewById(R.id.EditTextPassword);
                 String email = tvEmail.getText().toString();
                 String password = tvPassword.getText().toString();
                 LibraryService.login(email, password, new Callback<Boolean>() {
                     @Override
                     public void onCompletion(Boolean success) {
                         if (success) {
-                            Toast.makeText(loginUser.this, "successful", Toast.LENGTH_SHORT).show();
+                            // Jetzt sind wir eingeloggt
                         } else {
-                            Toast.makeText(loginUser.this, "not sucessful", Toast.LENGTH_SHORT).show();
+                            // Passwort war falsch oder User unbekannt.
                         }
                     }
 
                     @Override
                     public void onError(String message) {
-                        // Fehler z.B. in einem Toast/Snackbar darstellen
                         Toast.makeText(loginUser.this, "error", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -65,7 +63,7 @@ public class loginUser extends AppCompatActivity {
         });
 
         //password lButton input validation
-        final EditText password = (EditText) findViewById(R.id.password);
+        final EditText password = (EditText) findViewById(R.id.EditTextPassword);
         password.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
