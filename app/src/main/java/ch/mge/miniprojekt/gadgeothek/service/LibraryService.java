@@ -25,6 +25,10 @@ public class LibraryService {
         serverUrl = address;
     }
 
+    public static String getServerAddress() {
+        return serverUrl;
+    }
+
     public static boolean isLoggedIn() {
         return token != null;
     }
