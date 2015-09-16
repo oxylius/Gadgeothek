@@ -5,4 +5,17 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_library_selection">Set Server Address</string>
     <string name="server_address">Server Address</string>
+    <string-array name="default_servers_array">
+        <item>mge1.dev.ifs.hsr.ch</item>
+        <item>mge2.dev.ifs.hsr.ch</item>
+        <item>mge3.dev.ifs.hsr.ch</item>
+        <item>mge4.dev.ifs.hsr.ch</item>
+        <item>mge5.dev.ifs.hsr.ch</item>
+        <item>mge6.dev.ifs.hsr.ch</item>
+        <item>mge7.dev.ifs.hsr.ch</item>
+        <item>mge8.dev.ifs.hsr.ch</item>
+        <item>mge9.dev.ifs.hsr.ch</item>
+        <item>mge10.dev.ifs.hsr.ch</item>
+        <item>localhost</item>
+    </string-array>
 </resources>
