@@ -27,6 +27,7 @@ public class LibrarySelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library_selection);
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -45,6 +46,7 @@ public class LibrarySelectionActivity extends AppCompatActivity {
         if(getSupportActionBar() != null) {
             ActionBar actionBar = getSupportActionBar();
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+            actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 

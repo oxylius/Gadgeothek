@@ -2,8 +2,12 @@ package ch.mge.miniprojekt.gadgeothek.activities;
 
 
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -19,12 +23,39 @@ import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
 public class loginUser extends AppCompatActivity {
 
-
-
+    private DrawerLayout mDrawerLayout;
+    final String SET_SERVER = "navigation_item_set_server";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_user);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                menuItem.setChecked(true);
+                mDrawerLayout.closeDrawers();
+                switch (menuItem.getItemId()) {
+                    case R.id.navigation_item_set_server: Intent intent = new Intent(loginUser.this, LibrarySelectionActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+                Toast.makeText(loginUser.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar() != null) {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         Button lButton  = (Button) findViewById(R.id.logButton);
         Button rButton = (Button) findViewById(R.id.regButton);
@@ -41,8 +72,10 @@ public class loginUser extends AppCompatActivity {
                     public void onCompletion(Boolean success) {
                         if (success) {
                             // Jetzt sind wir eingeloggt
+                            Toast.makeText(loginUser.this, "Logged in", Toast.LENGTH_SHORT).show();
                         } else {
                             // Passwort war falsch oder User unbekannt.
+                            Toast.makeText(loginUser.this, "Login failed", Toast.LENGTH_SHORT).show();
                         }
                     }
 
