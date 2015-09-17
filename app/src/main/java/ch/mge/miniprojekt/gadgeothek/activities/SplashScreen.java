@@ -20,7 +20,7 @@ public class SplashScreen extends Activity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    Intent intent = new Intent(SplashScreen.this, LibrarySelectionActivity.class);
+                    Intent intent = new Intent(SplashScreen.this, loginUser.class);
                     startActivity(intent);
                 }
             }

@@ -48,19 +48,6 @@ public class LibrarySelectionActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(findViewById(R.id.drawer_layout), "I'm a Snackbar", Snackbar.LENGTH_LONG).setAction("Action", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(LibrarySelectionActivity.this, "Snackbar Action", Toast.LENGTH_LONG).show();
-                    }
-                }).show();
-            }
-        });
-
         //Autocomplete TextView
         AutoCompleteTextView serverAddressElement = (AutoCompleteTextView) findViewById(R.id.serverAddressAutoComplete);
         String[] defaultServers = getResources().getStringArray(R.array.default_servers_array);
