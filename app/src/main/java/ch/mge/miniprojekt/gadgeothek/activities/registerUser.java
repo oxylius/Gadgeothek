@@ -7,29 +7,18 @@ import android.view.MenuItem;
 
 import ch.mge.miniprojekt.gadgeothek.R;
 
-public class MainActivity extends AppCompatActivity {
+public class registerUser extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button lButton = new Button(this);
-        lButton.setText("Login");
-        setContentView(lButton);
-
-        lButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, loginUser.class);
-                startActivity(intent);
-            }
-        });
+        setContentView(R.layout.activity_register_user);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_register_user, menu);
         return true;
     }
 
