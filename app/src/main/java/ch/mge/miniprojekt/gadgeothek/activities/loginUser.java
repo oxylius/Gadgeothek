@@ -15,47 +15,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import ch.mge.miniprojekt.gadgeothek.R;
 import ch.mge.miniprojekt.gadgeothek.service.Callback;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
-public class loginUser extends AppCompatActivity {
+public class loginUser extends GadgeothekMain {
 
-    private DrawerLayout mDrawerLayout;
     final String SET_SERVER = "navigation_item_set_server";
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.setActivityTitle("Login");
         setContentView(R.layout.activity_login_user);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
-                switch (menuItem.getItemId()) {
-                    case R.id.navigation_item_set_server: Intent intent = new Intent(loginUser.this, LibrarySelectionActivity.class);
-                        startActivity(intent);
-                        break;
-                }
-                Toast.makeText(loginUser.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                return true;
-            }
-        });
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if(getSupportActionBar() != null) {
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-            actionBar.setHomeButtonEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
 
         Button lButton  = (Button) findViewById(R.id.logButton);
         Button rButton = (Button) findViewById(R.id.regButton);
@@ -139,4 +113,5 @@ public class loginUser extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

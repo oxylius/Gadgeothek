@@ -16,11 +16,12 @@ import ch.mge.miniprojekt.gadgeothek.R;
 import ch.mge.miniprojekt.gadgeothek.service.Callback;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
-public class registerUser extends AppCompatActivity {
+public class registerUser extends GadgeothekMain {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.setActivityTitle("Register");
         setContentView(R.layout.activity_register_user);
 
         final EditText password = (EditText) findViewById(R.id.EditTextPassword);
