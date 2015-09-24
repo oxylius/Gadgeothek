@@ -1,5 +1,6 @@
 package ch.mge.miniprojekt.gadgeothek.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -50,6 +51,30 @@ public class GadgeothekMain extends AppCompatActivity {
         getLayoutInflater().inflate(layoutResID, activityContainer, true);
 
         super.setContentView(fullView);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_View);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                menuItem.setChecked(true);
+                mDrawerLayout.closeDrawers();
+                switch(menuItem.getItemId()) {
+                    case R.id.navigation_item_set_server:
+                        startActivity(new Intent(GadgeothekMain.this, LibrarySelectionActivity.class));
+                        break;
+                    case R.id.navigation_item_login:
+                        startActivity(new Intent(GadgeothekMain.this, loginUser.class));
+                        break;
+                    case R.id.navigation_item_register:
+                        startActivity(new Intent(GadgeothekMain.this, registerUser.class));
+                        break;
+                    default:
+                        Toast.makeText(GadgeothekMain.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                }
+                return true;
+            }
+        });
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

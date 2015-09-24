@@ -8,15 +8,16 @@
             android:icon="@drawable/ic_attachment"
             android:title="@string/nav_item_attachment" />
         <item
-            android:id="@+id/navigation_item_images"
-            android:icon="@drawable/ic_image"
-            android:title="@string/nav_item_images"/>
+            android:id="@+id/navigation_item_register"
+            android:icon="@drawable/ic_person_add_black_24dp"
+            android:title="@string/nav_item_register"/>
         <item
-            android:id="@+id/navigation_item_location"
-            android:icon="@drawable/ic_place"
-            android:title="@string/nav_item_location" />
+            android:id="@+id/navigation_item_login"
+            android:icon="@drawable/ic_input_black_24dp"
+            android:title="@string/nav_item_login" />
         <item
             android:id="@+id/navigation_item_set_server"
+            android:icon="@drawable/ic_storage_black_24dp"
             android:title="@string/nav_item_set_server" />
     </group>
 

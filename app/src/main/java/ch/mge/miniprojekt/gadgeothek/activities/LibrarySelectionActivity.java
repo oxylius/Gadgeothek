@@ -25,7 +25,8 @@ public class LibrarySelectionActivity extends GadgeothekMain {
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, defaultServers);
         serverAddressElement.setAdapter(adapter);
-
+        if(LibraryService.getServerAddress() != null)
+            serverAddressElement.setText(LibraryService.getServerAddress());
     }
 
 
@@ -36,6 +37,7 @@ public class LibrarySelectionActivity extends GadgeothekMain {
         if (serverAddress.trim().length() == 0) {
             Toast.makeText(LibrarySelectionActivity.this, "Please enter an Server Address!", Toast.LENGTH_SHORT).show();
         } else {
+            serverAddress = "http://" + serverAddress;
             LibraryService.setServerAddress(serverAddress);
             Toast.makeText(LibrarySelectionActivity.this, "Set Server Address to: " + LibraryService.getServerAddress(), Toast.LENGTH_SHORT).show();
         }
