@@ -39,8 +39,8 @@ public class registerUser extends GadgeothekMain {
             @Override
             public void afterTextChanged(Editable s) {
                 String pw = s.toString();
-                if (s.length() < 8) {
-                    password.setError("Passwort muss min. 8 Zeichen lang sein.");
+                if (s.length() < 5) {
+                    password.setError("Passwort muss min. 5 Zeichen lang sein.");
                 }
             }
         });
