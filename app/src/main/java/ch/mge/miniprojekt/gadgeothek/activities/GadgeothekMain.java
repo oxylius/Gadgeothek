@@ -22,27 +22,6 @@ public class GadgeothekMain extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);*/
-
-        /*NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
-                Toast.makeText(GadgeothekMain.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                return true;
-            }
-        });*/
-
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if(getSupportActionBar() != null) {
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-            actionBar.setHomeButtonEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }*/
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
