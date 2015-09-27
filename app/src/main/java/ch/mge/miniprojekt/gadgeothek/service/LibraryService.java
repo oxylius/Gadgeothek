@@ -165,13 +165,13 @@ public class LibraryService {
     }
 
 
-    public static void deleteReservation(Reservation toDelete, final Callback<Boolean> callback) {
+    public static void deleteReservation(String resId, final Callback<Boolean> callback) {
         if (token == null) {
             throw new IllegalStateException("Not logged in");
         }
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("token", getTokenAsString());
-        parameter.put("id", toDelete.getReservationId());
+        parameter.put("id", resId);
         Request<Boolean> request = new Request<>(HttpVerb.DELETE, serverUrl + "/reservations", Boolean.class, parameter, new Callback<Boolean>() {
             @Override
             public void onCompletion(Boolean input) {
@@ -216,6 +216,8 @@ public class LibraryService {
     static Gson createGsonObject() {
         return new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
     }
+
+
 }
 
 
