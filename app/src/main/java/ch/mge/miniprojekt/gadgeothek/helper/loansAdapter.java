@@ -12,10 +12,6 @@ import java.util.List;
 import ch.mge.miniprojekt.gadgeothek.R;
 import ch.mge.miniprojekt.gadgeothek.domain.Loan;
 
-/**
- * Created by kali on 28.09.15.
- */
-
 public class loansAdapter extends
     RecyclerView.Adapter<loansAdapter.ViewHolder> {
 
