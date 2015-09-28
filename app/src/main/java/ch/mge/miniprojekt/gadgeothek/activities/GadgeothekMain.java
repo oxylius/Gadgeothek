@@ -66,7 +66,7 @@ public class GadgeothekMain extends AppCompatActivity {
                         startActivity(new Intent(GadgeothekMain.this, loginUser.class));
                         break;
                     case R.id.navigation_item_register:
-                        startActivity(new Intent(GadgeothekMain.this, RegisterUser.class));
+                        startActivity(new Intent(GadgeothekMain.this, registerUser.class));
                         break;
                     case R.id.navigation_item_loan:
                         startActivity(new Intent(GadgeothekMain.this, LoanUser.class));
