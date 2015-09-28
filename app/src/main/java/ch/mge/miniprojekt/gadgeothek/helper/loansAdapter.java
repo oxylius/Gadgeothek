@@ -18,11 +18,13 @@ public class loansAdapter extends
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nameTextView;
+        public TextView pickupDateTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             nameTextView = (TextView) itemView.findViewById(R.id.item_name);
+            pickupDateTextView = (TextView) itemView.findViewById(R.id.pickupDate);
         }
     }
 
@@ -54,6 +56,9 @@ public class loansAdapter extends
         // Set item views based on the data model
         TextView textView = viewHolder.nameTextView;
         textView.setText(loans.getGadget().getName());
+
+        TextView pickupDateTV = viewHolder.pickupDateTextView;
+        pickupDateTV.setText(loans.getPickupDate().toString());
 
     }
 
