@@ -68,6 +68,9 @@ public class GadgeothekMain extends AppCompatActivity {
                     case R.id.navigation_item_register:
                         startActivity(new Intent(GadgeothekMain.this, registerUser.class));
                         break;
+                    case R.id.navigation_item_loan:
+                        startActivity(new Intent(GadgeothekMain.this, LoanUser.class));
+                        break;
                     default:
                         Toast.makeText(GadgeothekMain.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                 }

@@ -25,6 +25,7 @@
         <item>mge9.dev.ifs.hsr.ch</item>
         <item>mge10.dev.ifs.hsr.ch</item>
         <item>localhost</item>
+        <item>10.0.2.2:8080</item>
     </string-array>
     <string name="nav_item_attachment">Attachment</string>
     <string name="nav_item_images">Images</string>
@@ -41,4 +42,5 @@
     <string name="nav_sub_menu_config">Config</string>
     <string name="nav_item_loan">Loan</string>
     <string name="nav_item_reservation">Reservation</string>
+    <string name="title_activity_loan_user">LoanUser</string>
 </resources>
