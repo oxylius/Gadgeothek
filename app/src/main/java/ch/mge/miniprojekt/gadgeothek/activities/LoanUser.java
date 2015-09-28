@@ -1,8 +1,10 @@
 package ch.mge.miniprojekt.gadgeothek.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -19,21 +21,26 @@ public class LoanUser extends GadgeothekMain {
         super.onCreate(savedInstanceState);
         setActivityTitle("My loaned Gadgets");
         setContentView(R.layout.activity_loan_user);
+        try {
+            LibraryService.getLoansForCustomer(new Callback<List<Loan>>() {
+                @Override
+                public void onCompletion(List<Loan> input) {
+                    //https://guides.codepath.com/android/Using-the-RecyclerView
+                    RecyclerView rvLoans = (RecyclerView) findViewById(R.id.rvLoans);
+                    loansAdapter adapter = new loansAdapter(input);
+                    rvLoans.setAdapter(adapter);
+                    rvLoans.setLayoutManager(new LinearLayoutManager(LoanUser.this));
+                }
 
-        LibraryService.getLoansForCustomer(new Callback<List<Loan>>() {
-            @Override
-            public void onCompletion(List<Loan> input) {
-                //https://guides.codepath.com/android/Using-the-RecyclerView
-                RecyclerView rvLoans = (RecyclerView) findViewById(R.id.rvLoans);
-                loansAdapter adapter = new loansAdapter(input);
-                rvLoans.setAdapter(adapter);
-                rvLoans.setLayoutManager(new LinearLayoutManager(LoanUser.this));
-            }
+                @Override
+                public void onError(String message) {
+                    Toast.makeText(LoanUser.this, message, Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (IllegalStateException e) {
+            Intent intent = new Intent(LoanUser.this, loginUser.class);
+            startActivity(intent);
+        }
 
-            @Override
-            public void onError(String message) {
-
-            }
-        });
     }
 }

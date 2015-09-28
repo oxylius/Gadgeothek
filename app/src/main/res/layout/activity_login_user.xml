@@ -19,6 +19,7 @@
         android:id="@+id/TextViewMail"
         android:layout_below="@id/loginText"/>
     <EditText
+        android:text="m@hsr.ch"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/TextViewMail"
@@ -33,6 +34,7 @@
         android:layout_below="@id/EditTextMail"
         />
     <EditText
+        android:text="12345"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
