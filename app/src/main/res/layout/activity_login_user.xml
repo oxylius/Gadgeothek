@@ -25,8 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/TextViewMail"
         android:id="@+id/EditTextMail"
-        android:inputType="textEmailAddress"
-        android:text="m@hsr.ch"/>
+        android:inputType="textEmailAddress" />
     //Password
     <TextView
         android:text="@string/password"
@@ -42,8 +41,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/TextViewPassword"
         android:id="@+id/EditTextPassword"
-        android:inputType="textPassword"
-        android:text="12345"/>
+        android:inputType="textPassword" />
 
     <Button
         android:layout_width="wrap_content"

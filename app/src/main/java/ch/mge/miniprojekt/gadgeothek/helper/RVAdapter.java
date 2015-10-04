@@ -2,18 +2,15 @@ package ch.mge.miniprojekt.gadgeothek.helper;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import ch.mge.miniprojekt.gadgeothek.R;
-import ch.mge.miniprojekt.gadgeothek.activities.ReservationActivity;
 import ch.mge.miniprojekt.gadgeothek.domain.Reservation;
 import ch.mge.miniprojekt.gadgeothek.service.Callback;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
@@ -65,6 +62,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
     @Override
     public void onItemDismiss(int position) {
         final int pos = position;
+        /*
         LibraryService.deleteReservation(reservations.get(position).getReservationId(), new Callback<Boolean>() {
             @Override
             public void onCompletion(Boolean input) {
@@ -76,6 +74,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
             public void onError(String message) {
             }
         });
+        */
     }
 
     public static class ReservationViewHolder extends RecyclerView.ViewHolder {
