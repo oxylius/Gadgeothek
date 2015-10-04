@@ -43,5 +43,9 @@
     <string name="nav_sub_menu_config">Config</string>
     <string name="nav_item_loan">Loan</string>
     <string name="nav_item_reservation">Reservation</string>
+    <string name="title_activity_reservation">ReservationActivity</string>
+    <string name="add_reservation">Add</string>
+    <string name="delete_reservation">Delete</string>
+    <string name="title_activity_add_reservation">AddReservationActivity</string>
     <string name="title_activity_loan_user">LoanUser</string>
 </resources>

@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import ch.mge.miniprojekt.gadgeothek.R;
+import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
 
 public class GadgeothekMain extends AppCompatActivity {
@@ -67,6 +68,11 @@ public class GadgeothekMain extends AppCompatActivity {
                         break;
                     case R.id.navigation_item_register:
                         startActivity(new Intent(GadgeothekMain.this, registerUser.class));
+                        break;
+                    case R.id.navigation_item_reservation:
+                        if(LibraryService.isLoggedIn())
+                            startActivity(new Intent(GadgeothekMain.this, ReservationActivity.class));
+                        else Toast.makeText(GadgeothekMain.this, "Not Logged in!", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.navigation_item_loan:
                         startActivity(new Intent(GadgeothekMain.this, LoanUser.class));
