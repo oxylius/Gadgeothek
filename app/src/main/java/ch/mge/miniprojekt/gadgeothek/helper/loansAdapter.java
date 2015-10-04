@@ -1,6 +1,7 @@
 package ch.mge.miniprojekt.gadgeothek.helper;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +17,13 @@ public class loansAdapter extends
     RecyclerView.Adapter<loansAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        public TextView nameTextView;
-        public TextView pickupDateTextView;
+        CardView cv;
+        TextView nameTextView;
+        TextView pickupDateTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
+            cv = (CardView)itemView.findViewById(R.id.cv);
             nameTextView = (TextView) itemView.findViewById(R.id.item_name);
             pickupDateTextView = (TextView) itemView.findViewById(R.id.pickupDate);
         }
@@ -31,7 +32,7 @@ public class loansAdapter extends
     private List<Loan> mLoans;
 
     public loansAdapter(List<Loan> loans) {
-        mLoans = loans;
+        this.mLoans = loans;
     }
 
     @Override
@@ -40,10 +41,10 @@ public class loansAdapter extends
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.item_loans, parent, false);
+        View loanView = inflater.inflate(R.layout.item_loans, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
+        ViewHolder viewHolder = new ViewHolder(loanView);
         return viewHolder;
     }
 
@@ -60,6 +61,10 @@ public class loansAdapter extends
         TextView pickupDateTV = viewHolder.pickupDateTextView;
         pickupDateTV.setText(loans.getPickupDate().toString());
 
+    }
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
     }
 
     // Return the total count of items
