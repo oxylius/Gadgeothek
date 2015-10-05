@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ch.mge.miniprojekt.gadgeothek.activities.GadgetDetailActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gadget_detail_id"
+        android:text="id"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gadget_detail_title"
+        android:textSize="30sp"
+        android:layout_below="@id/gadget_detail_id"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gadget_detail_manufacturer"
+        android:layout_below="@id/gadget_detail_title"
+        android:text="manufacturer"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gadget_detail_condition"
+        android:layout_below="@id/gadget_detail_manufacturer"
+        android:text="condition"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gadget_detail_price"
+        android:layout_below="@id/gadget_detail_condition"
+        android:text="price"
+        />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_reservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:src="@drawable/ic_plus_white_24dp" />
+
+</RelativeLayout>

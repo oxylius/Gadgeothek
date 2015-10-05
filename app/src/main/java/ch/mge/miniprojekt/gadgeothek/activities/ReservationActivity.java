@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -30,6 +31,9 @@ public class ReservationActivity extends GadgeothekMain {
 
     RecyclerView rv;
     RVAdapter adapter;
+    FloatingActionButton fab;
+    ItemTouchHelper.SimpleCallback simpleItemTouchCallback;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,7 @@ public class ReservationActivity extends GadgeothekMain {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add_reservation);
+        fab = (FloatingActionButton) findViewById(R.id.fab_add_reservation);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +59,7 @@ public class ReservationActivity extends GadgeothekMain {
             @Override
             public void onCompletion(List<Reservation> reservations) {
 
-                adapter = new RVAdapter(reservations);
+                adapter = new RVAdapter(reservations, getApplicationContext());
                 rv.setAdapter(adapter);
 
             }
@@ -65,7 +69,7 @@ public class ReservationActivity extends GadgeothekMain {
                 Toast.makeText(ReservationActivity.this, "Error getting Reservations", Toast.LENGTH_SHORT).show();
             }
         });
-        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+        simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -79,9 +83,36 @@ public class ReservationActivity extends GadgeothekMain {
                 adapter.onItemDismiss(viewHolder.getAdapterPosition());
 
             }
+
         };
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
         itemTouchHelper.attachToRecyclerView(rv);
+
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setColorSchemeColors(R.color.accent);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Refresh items
+                LibraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
+                    @Override
+                    public void onCompletion(List<Reservation> reservations) {
+
+                        adapter = new RVAdapter(reservations, getApplicationContext());
+                        rv.setAdapter(adapter);
+                        rv.getAdapter().notifyDataSetChanged();
+                        swipeRefreshLayout.setRefreshing(false);
+
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(ReservationActivity.this, "Error getting Reservations", Toast.LENGTH_SHORT).show();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        });
     }
 
 }

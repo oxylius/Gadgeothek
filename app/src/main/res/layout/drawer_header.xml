@@ -6,12 +6,15 @@
     android:background="?attr/colorPrimaryDark"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    android:gravity="bottom">
+    android:gravity="bottom"
+    android:id="@+id/drawer_header">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/drawer_header_text"
+        android:id="@+id/drawer_header_login_name"
+        android:text="Logged out"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
 
 </LinearLayout>

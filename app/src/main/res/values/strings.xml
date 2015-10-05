@@ -45,4 +45,5 @@
     <string name="add_reservation">Add</string>
     <string name="delete_reservation">Delete</string>
     <string name="title_activity_add_reservation">AddReservationActivity</string>
+    <string name="title_activity_gadget_detail">GadgetDetailActivity</string>
 </resources>

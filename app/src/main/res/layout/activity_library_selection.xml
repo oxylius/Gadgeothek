@@ -19,6 +19,7 @@
         android:id="@+id/serverAddressAutoComplete"
         android:layout_marginBottom="30dp"
         android:layout_above="@+id/setServerButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="152.96.239.188:8080"/>
 
 </RelativeLayout>

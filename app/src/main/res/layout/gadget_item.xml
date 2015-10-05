@@ -21,35 +21,6 @@
             android:text="gadgetitle"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gadget_item_id"
-            android:layout_below="@+id/gadget_item_gadget_title"
-            android:text="id"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gadget_item_manufacturer"
-            android:layout_below="@+id/gadget_item_id"
-            android:text="manufacturer"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gadget_item_condition"
-            android:layout_below="@+id/gadget_item_manufacturer"
-            android:text="condition"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gadget_item_price"
-            android:layout_below="@+id/gadget_item_condition"
-            android:text="price"
-            />
-
     </RelativeLayout>
 
 

@@ -16,7 +16,7 @@ import ch.mge.miniprojekt.gadgeothek.R;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
 
-public class GadgeothekMain extends AppCompatActivity {
+public class  GadgeothekMain extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private String activityTitle;
 

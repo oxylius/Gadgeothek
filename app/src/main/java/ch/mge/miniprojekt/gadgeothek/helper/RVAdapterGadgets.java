@@ -1,5 +1,7 @@
 package ch.mge.miniprojekt.gadgeothek.helper;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +15,8 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 import ch.mge.miniprojekt.gadgeothek.R;
+import ch.mge.miniprojekt.gadgeothek.activities.AddReservationActivity;
+import ch.mge.miniprojekt.gadgeothek.activities.GadgetDetailActivity;
 import ch.mge.miniprojekt.gadgeothek.domain.Gadget;
 import ch.mge.miniprojekt.gadgeothek.domain.Reservation;
 
@@ -21,25 +25,27 @@ public class RVAdapterGadgets extends RecyclerView.Adapter<RVAdapterGadgets.Gadg
     List<Gadget> gadgets;
 
     public static class GadgetViewHolder extends RecyclerView.ViewHolder {
+        private final Context context;
+        Gadget gadget = null;
         CardView cv;
-        TextView manufacturer;
         TextView gadgetTitle;
-        TextView price;
-        TextView condition;
-        TextView inventoryId;
 
         GadgetViewHolder(View itemView) {
             super(itemView);
+            context = itemView.getContext();
             cv = (CardView)itemView.findViewById(R.id.gadget_item);
-            inventoryId = (TextView)itemView.findViewById(R.id.gadget_item_id);
             gadgetTitle = (TextView)itemView.findViewById(R.id.gadget_item_gadget_title);
-            manufacturer = (TextView)itemView.findViewById(R.id.gadget_item_manufacturer);
-            price = (TextView)itemView.findViewById(R.id.gadget_item_price);
-            condition = (TextView)itemView.findViewById(R.id.gadget_item_condition);
+
             //personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    Intent intent = new Intent(context, GadgetDetailActivity.class);
+                    intent.putExtra(GadgetDetailActivity.GADGET, gadget);
+
+                    context.startActivity(intent);
+                }
+            });
         }
-
-
     }
 
     public RVAdapterGadgets(List<Gadget> gadgets){
@@ -59,11 +65,10 @@ public class RVAdapterGadgets extends RecyclerView.Adapter<RVAdapterGadgets.Gadg
 
     @Override
     public void onBindViewHolder(GadgetViewHolder GadgetViewHolder, int i) {
-        GadgetViewHolder.inventoryId.setText(gadgets.get(i).getInventoryNumber());
+        GadgetViewHolder.gadget = gadgets.get(i);
         GadgetViewHolder.gadgetTitle.setText(gadgets.get(i).getName());
-        GadgetViewHolder.manufacturer.setText(gadgets.get(i).getManufacturer());
-        GadgetViewHolder.condition.setText(gadgets.get(i).getCondition().toString());
         //GadgetViewHolder.price.setText((int) gadgets.get(i).getPrice());
+
 
         //GadgetViewHolder.personPhoto.setImageResource(persons.get(i).photoId);
     }

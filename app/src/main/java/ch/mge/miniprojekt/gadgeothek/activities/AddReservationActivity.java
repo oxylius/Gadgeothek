@@ -4,8 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.List;
@@ -23,14 +26,15 @@ public class AddReservationActivity extends GadgeothekMain {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setActivityTitle("Gadgets");
         setContentView(R.layout.activity_add_reservation);
-        setActivityTitle("Gadget");
 
         rv = (RecyclerView)findViewById(R.id.gadget_container);
         rv.setHasFixedSize(true);
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
+
 
         LibraryService.getGadgets(new Callback<List<Gadget>>() {
             @Override
