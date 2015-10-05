@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import ch.mge.miniprojekt.gadgeothek.R;
@@ -39,13 +40,15 @@ public class loginUser extends GadgeothekMain {
             public void onClick(View v) {
                 EditText tvEmail = (EditText) findViewById(R.id.EditTextMail);
                 EditText tvPassword = (EditText) findViewById(R.id.EditTextPassword);
-                String email = tvEmail.getText().toString();
+                final String email = tvEmail.getText().toString();
                 String password = tvPassword.getText().toString();
                 LibraryService.login(email, password, new Callback<Boolean>() {
                     @Override
                     public void onCompletion(Boolean success) {
                         if (success) {
                             // Jetzt sind wir eingeloggt
+                            TextView loginName = (TextView)findViewById(R.id.drawer_header_login_name);
+                            loginName.setText(email);
                             Toast.makeText(loginUser.this, "Logged in", Toast.LENGTH_SHORT).show();
                         } else {
                             // Passwort war falsch oder User unbekannt.
