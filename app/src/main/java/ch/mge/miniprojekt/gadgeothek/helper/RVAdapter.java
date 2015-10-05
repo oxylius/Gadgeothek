@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -64,8 +65,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
     @Override
     public void onItemDismiss(int position) {
         final int pos = position;
-        /*
-        LibraryService.deleteReservation(reservations.get(position).getReservationId(), new Callback<Boolean>() {
+        LibraryService.deleteReservation(reservations.get(position), new Callback<Boolean>() {
             @Override
             public void onCompletion(Boolean input) {
                 reservations.remove(pos);
@@ -78,7 +78,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
                 Toast.makeText(context, "Error on Reservation delete!", Toast.LENGTH_SHORT).show();
             }
         });
-        */
     }
 
     public static class ReservationViewHolder extends RecyclerView.ViewHolder {
