@@ -35,7 +35,7 @@ public class LibrarySelectionActivity extends GadgeothekMain {
         AutoCompleteTextView serverAddressElement = (AutoCompleteTextView) findViewById(R.id.serverAddressAutoComplete);
         String serverAddress = serverAddressElement.getText().toString();
         if (serverAddress.trim().length() == 0) {
-            Toast.makeText(LibrarySelectionActivity.this, "Please enter an Server Address!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LibrarySelectionActivity.this, "Please enter a Server Address!", Toast.LENGTH_SHORT).show();
         } else {
             serverAddress = "http://" + serverAddress;
             LibraryService.setServerAddress(serverAddress);

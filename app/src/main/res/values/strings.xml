@@ -24,7 +24,9 @@
         <item>mge8.dev.ifs.hsr.ch</item>
         <item>mge9.dev.ifs.hsr.ch</item>
         <item>mge10.dev.ifs.hsr.ch</item>
-        <item>localhost</item>
+        <item>localhost:8080</item>
+        <item>10.0.2.2:8080</item>
+        <item>192.168.178.22:8080</item>
     </string-array>
     <string name="nav_item_attachment">Attachment</string>
     <string name="nav_item_images">Images</string>
@@ -45,5 +47,6 @@
     <string name="add_reservation">Add</string>
     <string name="delete_reservation">Delete</string>
     <string name="title_activity_add_reservation">AddReservationActivity</string>
+    <string name="title_activity_loan_user">LoanUser</string>
     <string name="title_activity_gadget_detail">GadgetDetailActivity</string>
 </resources>

@@ -165,13 +165,13 @@ public class LibraryService {
     }
 
 
-    public static void deleteReservation(String resId, final Callback<Boolean> callback) {
+    public static void deleteReservation(Reservation toDelete, final Callback<Boolean> callback) {
         if (token == null) {
             throw new IllegalStateException("Not logged in");
         }
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("token", getTokenAsString());
-        parameter.put("id", resId);
+        parameter.put("id", toDelete.getReservationId());
         Request<Boolean> request = new Request<>(HttpVerb.DELETE, serverUrl + "/public/reservations", Boolean.class, parameter, new Callback<Boolean>() {
             @Override
             public void onCompletion(Boolean input) {
