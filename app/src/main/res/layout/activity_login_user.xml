@@ -3,46 +3,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TextView
-        android:text="Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/loginText"
-        android:layout_below="@id/toolbar"/>
-
     //Mail
-    <TextView
-        android:text="@string/mail"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/TextViewMail"
-        android:layout_below="@id/loginText"/>
-    <EditText
-        android:text="m@hsr.ch"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/TextViewMail"
-        android:id="@+id/EditTextMail"
-        android:inputType="textEmailAddress" />
-    //Password
-    <TextView
-        android:text="@string/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TextViewPassword"
-        android:layout_below="@id/EditTextMail"
-        />
-    <EditText
-        android:text="12345"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/TextViewPassword"
-        android:id="@+id/EditTextPassword"
-        android:inputType="textPassword" />
+        android:layout_alignParentTop="true"
+        android:id="@+id/EditTextMail">
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:text="m@hsr.ch"
+            android:hint="E-Mail" />
+
+    </android.support.design.widget.TextInputLayout>
+    //Password
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/EditTextPassword"
+        android:layout_below="@id/EditTextMail">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:text="12345"
+            android:hint="Password" />
+
+    </android.support.design.widget.TextInputLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

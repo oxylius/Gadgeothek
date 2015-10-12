@@ -41,10 +41,6 @@
             android:name=".activities.AddReservationActivity"
             android:label="@string/title_activity_add_reservation" >
         </activity>
-        <activity
-            android:name=".activities.GadgetDetailActivity"
-            android:label="@string/title_activity_gadget_detail" >
-        </activity>
     </application>
 
 </manifest>

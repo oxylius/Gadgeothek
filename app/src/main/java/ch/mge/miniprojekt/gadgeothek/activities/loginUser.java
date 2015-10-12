@@ -3,6 +3,7 @@ package ch.mge.miniprojekt.gadgeothek.activities;
 
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,7 @@ public class loginUser extends GadgeothekMain {
 
     final String SET_SERVER = "navigation_item_set_server";
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setActivityTitle("Login");
         setContentView(R.layout.activity_login_user);
@@ -38,17 +39,15 @@ public class loginUser extends GadgeothekMain {
         lButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText tvEmail = (EditText) findViewById(R.id.EditTextMail);
-                EditText tvPassword = (EditText) findViewById(R.id.EditTextPassword);
-                final String email = tvEmail.getText().toString();
-                String password = tvPassword.getText().toString();
+                TextInputLayout tiEmail = (TextInputLayout) findViewById(R.id.EditTextMail);
+                TextInputLayout tiPassword = (TextInputLayout) findViewById(R.id.EditTextPassword);
+                final String email = tiEmail.getEditText().getText().toString();
+                String password = tiPassword.getEditText().getText().toString();
                 LibraryService.login(email, password, new Callback<Boolean>() {
                     @Override
                     public void onCompletion(Boolean success) {
                         if (success) {
                             // Jetzt sind wir eingeloggt
-                            TextView loginName = (TextView)findViewById(R.id.drawer_header_login_name);
-                            loginName.setText(email);
                             Toast.makeText(loginUser.this, "Logged in", Toast.LENGTH_SHORT).show();
                         } else {
                             // Passwort war falsch oder User unbekannt.
@@ -73,8 +72,8 @@ public class loginUser extends GadgeothekMain {
         });
 
         //password lButton input validation
-        final EditText password = (EditText) findViewById(R.id.EditTextPassword);
-        password.addTextChangedListener(new TextWatcher() {
+        final TextInputLayout password = (TextInputLayout) findViewById(R.id.EditTextPassword);
+        password.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -90,6 +89,8 @@ public class loginUser extends GadgeothekMain {
                 String pw = s.toString();
                 if (s.length() < 5) {
                     password.setError("Passwort muss min. 5 Zeichen lang sein.");
+                } else {
+                    password.setErrorEnabled(false);
                 }
             }
         });
