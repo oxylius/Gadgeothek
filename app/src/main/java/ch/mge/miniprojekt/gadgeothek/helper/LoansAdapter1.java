@@ -14,8 +14,8 @@ import java.util.List;
 import ch.mge.miniprojekt.gadgeothek.R;
 import ch.mge.miniprojekt.gadgeothek.domain.Loan;
 
-public class loansAdapter extends
-    RecyclerView.Adapter<loansAdapter.ViewHolder> {
+public class LoansAdapter extends
+    RecyclerView.Adapter<LoansAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -34,12 +34,12 @@ public class loansAdapter extends
 
     private List<Loan> mLoans;
 
-    public loansAdapter(List<Loan> loans) {
+    public LoansAdapter(List<Loan> loans) {
         this.mLoans = loans;
     }
 
     @Override
-    public loansAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LoansAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -47,13 +47,12 @@ public class loansAdapter extends
         View loanView = inflater.inflate(R.layout.item_loans, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(loanView);
-        return viewHolder;
+        return new ViewHolder(loanView);
     }
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(loansAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(LoansAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
         Loan loans = mLoans.get(position);
 

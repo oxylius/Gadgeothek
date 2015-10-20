@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 import java.util.List;
 import ch.mge.miniprojekt.gadgeothek.R;
-import ch.mge.miniprojekt.gadgeothek.helper.loansAdapter;
+import ch.mge.miniprojekt.gadgeothek.helper.LoansAdapter;
 import ch.mge.miniprojekt.gadgeothek.domain.Loan;
 import ch.mge.miniprojekt.gadgeothek.service.Callback;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
@@ -25,7 +25,7 @@ public class LoanUser extends GadgeothekMain {
                 public void onCompletion(List<Loan> input) {
                     RecyclerView rvLoans = (RecyclerView) findViewById(R.id.rvLoans);
                     rvLoans.setHasFixedSize(true);
-                    loansAdapter adapter = new loansAdapter(input);
+                    LoansAdapter adapter = new LoansAdapter(input);
                     rvLoans.setAdapter(adapter);
                     rvLoans.setLayoutManager(new LinearLayoutManager(LoanUser.this));
                 }
@@ -36,7 +36,7 @@ public class LoanUser extends GadgeothekMain {
                 }
             });
         } catch (IllegalStateException e) {
-            Intent intent = new Intent(LoanUser.this, loginUser.class);
+            Intent intent = new Intent(LoanUser.this, LoginUser.class);
             startActivity(intent);
         }
 

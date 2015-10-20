@@ -2,20 +2,12 @@ package ch.mge.miniprojekt.gadgeothek.activities;
 
 
 import android.content.Intent;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +15,7 @@ import ch.mge.miniprojekt.gadgeothek.R;
 import ch.mge.miniprojekt.gadgeothek.service.Callback;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
-public class loginUser extends GadgeothekMain {
+public class LoginUser extends GadgeothekMain {
 
     final String SET_SERVER = "navigation_item_set_server";
     @Override
@@ -49,18 +41,18 @@ public class loginUser extends GadgeothekMain {
                             // Jetzt sind wir eingeloggt
                             TextView loginName = (TextView)findViewById(R.id.drawer_header_login_name);
                             loginName.setText(email);
-                            Toast.makeText(loginUser.this, "Logged in", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(loginUser.this, LoanUser.class);
+                            Toast.makeText(LoginUser.this, "Logged in", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginUser.this, LoanUser.class);
                             startActivity(intent);
                         } else {
                             // Passwort war falsch oder User unbekannt.
-                            Toast.makeText(loginUser.this, "Login failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginUser.this, "Login failed", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onError(String message) {
-                        Toast.makeText(loginUser.this, "error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginUser.this, "error", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -69,7 +61,7 @@ public class loginUser extends GadgeothekMain {
         rButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(loginUser.this, registerUser.class);
+                Intent intent = new Intent(LoginUser.this, RegisterUser.class);
                 startActivity(intent);
             }
         });

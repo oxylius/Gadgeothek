@@ -64,10 +64,10 @@ public class  GadgeothekMain extends AppCompatActivity {
                         startActivity(new Intent(GadgeothekMain.this, LibrarySelectionActivity.class));
                         break;
                     case R.id.navigation_item_login:
-                        startActivity(new Intent(GadgeothekMain.this, loginUser.class));
+                        startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
                         break;
                     case R.id.navigation_item_register:
-                        startActivity(new Intent(GadgeothekMain.this, registerUser.class));
+                        startActivity(new Intent(GadgeothekMain.this, RegisterUser.class));
                         break;
                     case R.id.navigation_item_reservation:
                         if(LibraryService.isLoggedIn())
