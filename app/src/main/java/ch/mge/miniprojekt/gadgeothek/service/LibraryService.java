@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ch.mge.miniprojekt.gadgeothek.activities.GadgeothekMain;
 import ch.mge.miniprojekt.gadgeothek.domain.Gadget;
 import ch.mge.miniprojekt.gadgeothek.domain.Loan;
 import ch.mge.miniprojekt.gadgeothek.domain.Reservation;
@@ -18,15 +19,9 @@ public class LibraryService {
     
     private static final String TAG = LibraryService.class.getSimpleName();
     private static ch.mge.miniprojekt.gadgeothek.service.LoginToken token;
-    private static String serverUrl;
-
-    public static void setServerAddress(String address) {
-        Log.d(TAG, "Setting server to " + address);
-        serverUrl = address;
-    }
 
     public static String getServerAddress() {
-        return serverUrl;
+        return GadgeothekMain.getServerAddress();
     }
 
     public static boolean isLoggedIn() {
@@ -37,7 +32,7 @@ public class LibraryService {
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("email", mail);
         parameter.put("password", password);
-        Request<LoginToken> request = new Request<>(HttpVerb.POST, serverUrl + "/public/login", LoginToken.class, parameter, new Callback<LoginToken>() {
+        Request<LoginToken> request = new Request<>(HttpVerb.POST, getServerAddress() + "/public/login", LoginToken.class, parameter, new Callback<LoginToken>() {
             @Override
             public void onCompletion(LoginToken input) {
                 token = input;
@@ -56,7 +51,7 @@ public class LibraryService {
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("token", getTokenAsString());
 
-        Request<Boolean> request = new Request<>(HttpVerb.POST, serverUrl + "/public/logout", Boolean.class, parameter, new Callback<Boolean>() {
+        Request<Boolean> request = new Request<>(HttpVerb.POST, getServerAddress() + "/public/logout", Boolean.class, parameter, new Callback<Boolean>() {
             @Override
             public void onCompletion(Boolean input) {
                 if (input) {
@@ -81,7 +76,7 @@ public class LibraryService {
         parameter.put("name", name);
         parameter.put("studentnumber", studentenNumber);
 
-        Request<Boolean> request = new Request<>(HttpVerb.POST, serverUrl + "/public/register", Boolean.class, parameter, new Callback<Boolean>() {
+        Request<Boolean> request = new Request<>(HttpVerb.POST, getServerAddress() + "/public/register", Boolean.class, parameter, new Callback<Boolean>() {
             @Override
             public void onCompletion(Boolean input) {
                 callback.onCompletion(input);
@@ -103,7 +98,7 @@ public class LibraryService {
         HashMap<String, String> parameter = new HashMap<>();
 
         parameter.put("token", getTokenAsString());
-        Request<List<Loan>> request = new Request<>(HttpVerb.GET, serverUrl + "/public/loans", new TypeToken<List<Loan>>() {
+        Request<List<Loan>> request = new Request<>(HttpVerb.GET, getServerAddress() + "/public/loans", new TypeToken<List<Loan>>() {
         }.getType(), parameter, new Callback<List<Loan>>() {
             @Override
             public void onCompletion(List<Loan> input) {
@@ -125,7 +120,7 @@ public class LibraryService {
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("token", getTokenAsString());
 
-        Request<List<Reservation>> request = new Request<>(HttpVerb.GET, serverUrl + "/public/reservations", new TypeToken<List<Reservation>>() {
+        Request<List<Reservation>> request = new Request<>(HttpVerb.GET, getServerAddress() + "/public/reservations", new TypeToken<List<Reservation>>() {
         }.getType(), parameter, new Callback<List<Reservation>>() {
             @Override
             public void onCompletion(List<Reservation> input) {
@@ -149,7 +144,7 @@ public class LibraryService {
         parameter.put("token", getTokenAsString());
         parameter.put("gadgetId", toReserve.getInventoryNumber());
 
-        Request<Boolean> request = new Request<>(HttpVerb.POST, serverUrl + "/public/reservations", new TypeToken<Boolean>() {
+        Request<Boolean> request = new Request<>(HttpVerb.POST, getServerAddress() + "/public/reservations", new TypeToken<Boolean>() {
         }.getType(), parameter, new Callback<Boolean>() {
             @Override
             public void onCompletion(Boolean success) {
@@ -172,7 +167,7 @@ public class LibraryService {
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("token", getTokenAsString());
         parameter.put("id", toDelete.getReservationId());
-        Request<Boolean> request = new Request<>(HttpVerb.DELETE, serverUrl + "/public/reservations", Boolean.class, parameter, new Callback<Boolean>() {
+        Request<Boolean> request = new Request<>(HttpVerb.DELETE, getServerAddress() + "/public/reservations", Boolean.class, parameter, new Callback<Boolean>() {
             @Override
             public void onCompletion(Boolean input) {
                 callback.onCompletion(input);
@@ -193,7 +188,7 @@ public class LibraryService {
         HashMap<String, String> parameter = new HashMap<>();
 
         parameter.put("token", getTokenAsString());
-        Request<List<Gadget>> request = new Request<>(HttpVerb.GET, serverUrl + "/public/gadgets", new TypeToken<List<Gadget>>() {
+        Request<List<Gadget>> request = new Request<>(HttpVerb.GET, getServerAddress() + "/public/gadgets", new TypeToken<List<Gadget>>() {
         }.getType(), parameter, new Callback<List<Gadget>>() {
             @Override
             public void onCompletion(List<Gadget> input) {

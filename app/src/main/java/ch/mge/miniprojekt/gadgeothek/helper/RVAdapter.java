@@ -1,6 +1,8 @@
 package ch.mge.miniprojekt.gadgeothek.helper;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -50,6 +52,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
             reservationViewHolder.gadgetPhoto.setImageResource(R.drawable.ic_help_outline_black_24dp);
         }
         //reservationViewHolder.personPhoto.setImageResource(persons.get(i).photoId);
+        reservationViewHolder.waitingPos.setText("Waiting Position: " + reservations.get(i).getWatingPosition());
+        if(reservations.get(i).isReady()){
+            reservationViewHolder.cv.setCardBackgroundColor(context.getResources().getColor(R.color.green));
+            reservationViewHolder.waitingImage.setVisibility(View.GONE);
+            reservationViewHolder.waitingPos.setText("Ready for Pickup!");
+        }
     }
 
     @Override
@@ -63,19 +71,19 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
     }
 
     @Override
-    public void onItemDismiss(int position) {
+    public void onItemDismiss(int position, final RecyclerView rv) {
         final int pos = position;
         LibraryService.deleteReservation(reservations.get(position), new Callback<Boolean>() {
             @Override
             public void onCompletion(Boolean input) {
                 reservations.remove(pos);
                 notifyItemRemoved(pos);
-                Toast.makeText(context, "Reservation deleted!", Toast.LENGTH_SHORT).show();
+                Snackbar.make(rv, "Reservation deleted!", Snackbar.LENGTH_LONG).show();
             }
 
             @Override
             public void onError(String message) {
-                Toast.makeText(context, "Error on Reservation delete!", Toast.LENGTH_SHORT).show();
+                Snackbar.make(rv, "Error on Reservation delete!", Snackbar.LENGTH_LONG).show();
             }
         });
     }
@@ -86,6 +94,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
         TextView reservationId;
         TextView gadgetTitle;
         ImageView gadgetPhoto;
+        TextView waitingPos;
+        ImageView waitingImage;
 
         ReservationViewHolder(View itemView) {
             super(itemView);
@@ -94,6 +104,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
             gadgetTitle = (TextView)itemView.findViewById(R.id.reservation_item_gadget_title);
             gadgetPhoto = (ImageView)itemView.findViewById(R.id.reservation_item_gadget_image);
             //personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
+            waitingPos = (TextView)itemView.findViewById(R.id.reservation_item_waiting_pos);
+            waitingImage = (ImageView)itemView.findViewById(R.id.reservation_item_waiting_image);
         }
 
     }

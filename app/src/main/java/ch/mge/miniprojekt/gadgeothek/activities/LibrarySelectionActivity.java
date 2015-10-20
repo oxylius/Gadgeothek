@@ -1,6 +1,7 @@
 package ch.mge.miniprojekt.gadgeothek.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -25,8 +26,8 @@ public class LibrarySelectionActivity extends GadgeothekMain {
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, defaultServers);
         serverAddressElement.setAdapter(adapter);
-        if(LibraryService.getServerAddress() != null)
-            serverAddressElement.setText(LibraryService.getServerAddress().substring(7));
+        if(GadgeothekMain.getServerAddress().equals("missing"))
+            serverAddressElement.setText(GadgeothekMain.getServerAddress().substring(7));
     }
 
 
@@ -35,11 +36,11 @@ public class LibrarySelectionActivity extends GadgeothekMain {
         AutoCompleteTextView serverAddressElement = (AutoCompleteTextView) findViewById(R.id.serverAddressAutoComplete);
         String serverAddress = serverAddressElement.getText().toString();
         if (serverAddress.trim().length() == 0) {
-            Toast.makeText(LibrarySelectionActivity.this, "Please enter a Server Address!", Toast.LENGTH_SHORT).show();
+            Snackbar.make(view, "Please enter a Server Address!", Snackbar.LENGTH_LONG).show();
         } else {
             serverAddress = "http://" + serverAddress;
-            LibraryService.setServerAddress(serverAddress);
-            Toast.makeText(LibrarySelectionActivity.this, "Set Server Address to: " + LibraryService.getServerAddress().substring(7), Toast.LENGTH_SHORT).show();
+            GadgeothekMain.setServerAddress(serverAddress);
+            Snackbar.make(view, "Set Server Address to: " + GadgeothekMain.getServerAddress().substring(7), Snackbar.LENGTH_LONG).show();
         }
 
 

@@ -1,6 +1,7 @@
 package ch.mge.miniprojekt.gadgeothek.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
@@ -39,7 +40,7 @@ public class AddReservationActivity extends GadgeothekMain {
 
             @Override
             public void onError(String message) {
-                Toast.makeText(AddReservationActivity.this, "Error getting Gadgets", Toast.LENGTH_SHORT).show();
+                Snackbar.make(findViewById(R.id.activity_container), "Error getting Gadgets", Snackbar.LENGTH_LONG).show();
             }
         });
     }

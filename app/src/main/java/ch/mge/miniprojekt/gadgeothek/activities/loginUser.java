@@ -2,23 +2,13 @@ package ch.mge.miniprojekt.gadgeothek.activities;
 
 
 import android.content.Intent;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import ch.mge.miniprojekt.gadgeothek.R;
 import ch.mge.miniprojekt.gadgeothek.service.Callback;
@@ -38,7 +28,7 @@ public class loginUser extends GadgeothekMain {
 
         lButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 TextInputLayout tiEmail = (TextInputLayout) findViewById(R.id.EditTextMail);
                 TextInputLayout tiPassword = (TextInputLayout) findViewById(R.id.EditTextPassword);
                 final String email = tiEmail.getEditText().getText().toString();
@@ -48,16 +38,16 @@ public class loginUser extends GadgeothekMain {
                     public void onCompletion(Boolean success) {
                         if (success) {
                             // Jetzt sind wir eingeloggt
-                            Toast.makeText(loginUser.this, "Logged in", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Logged in", Snackbar.LENGTH_LONG).show();
                         } else {
                             // Passwort war falsch oder User unbekannt.
-                            Toast.makeText(loginUser.this, "Login failed", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Login failed", Snackbar.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onError(String message) {
-                        Toast.makeText(loginUser.this, "error", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(v, "error", Snackbar.LENGTH_LONG).show();
                     }
                 });
             }
