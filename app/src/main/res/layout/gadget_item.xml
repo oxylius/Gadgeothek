@@ -8,30 +8,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardUseCompatPadding="true"
-    android:animateLayoutChanges="true">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gadget_item_gadget_title"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:textSize="30sp"
-            android:padding="16dp"
-            />
-    </RelativeLayout>
+    >
     <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gadget_detail_container"
-        android:visibility="gone"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,14 +26,15 @@
             android:id="@+id/gadget_detail_title"
             android:textSize="30sp"
             android:gravity="bottom"
-            android:textColor="#FFF"
-            android:background="@color/primary_dark"
-            android:padding="16dp"/>
+            android:padding="16dp"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:id="@+id/gadget_detail_container"
+                android:visibility="gone">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
