@@ -75,7 +75,9 @@ public class  GadgeothekMain extends AppCompatActivity {
                         else Toast.makeText(GadgeothekMain.this, "Not Logged in!", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.navigation_item_loan:
-                        startActivity(new Intent(GadgeothekMain.this, LoanUser.class));
+                        if(LibraryService.isLoggedIn())
+                            startActivity(new Intent(GadgeothekMain.this, LoanUser.class));
+                        else Toast.makeText(GadgeothekMain.this, "Not Logged in!", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         Toast.makeText(GadgeothekMain.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();

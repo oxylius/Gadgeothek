@@ -50,6 +50,8 @@ public class loginUser extends GadgeothekMain {
                             TextView loginName = (TextView)findViewById(R.id.drawer_header_login_name);
                             loginName.setText(email);
                             Toast.makeText(loginUser.this, "Logged in", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(loginUser.this, LoanUser.class);
+                            startActivity(intent);
                         } else {
                             // Passwort war falsch oder User unbekannt.
                             Toast.makeText(loginUser.this, "Login failed", Toast.LENGTH_SHORT).show();
