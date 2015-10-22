@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 import java.util.List;
 import ch.mge.miniprojekt.gadgeothek.R;
@@ -38,6 +39,8 @@ public class LoanUser extends GadgeothekMain {
         } catch (IllegalStateException e) {
             Intent intent = new Intent(LoanUser.this, LoginUser.class);
             startActivity(intent);
+        } catch (Exception e) {
+            Log.d("Exception", "getLoansForCustomer");
         }
 
     }

@@ -1,8 +1,10 @@
 package ch.mge.miniprojekt.gadgeothek.helper;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,15 +43,30 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
 
     @Override
     public void onBindViewHolder(ReservationViewHolder reservationViewHolder, int i) {
-        reservationViewHolder.gadgetTitle.setText(reservations.get(i).getGadget().getName());
-        if(reservationViewHolder.gadgetTitle.getText().toString().contains("IPhone")) {
-            reservationViewHolder.gadgetPhoto.setImageResource(R.mipmap.ic_apple);
-        } else if(reservationViewHolder.gadgetTitle.getText().toString().contains("Android")) {
-            reservationViewHolder.gadgetPhoto.setImageResource(R.drawable.ic_android_black_24dp);
-        } else {
-            reservationViewHolder.gadgetPhoto.setImageResource(R.drawable.ic_help_outline_black_24dp);
+        try {
+            reservationViewHolder.gadgetTitle.setText(reservations.get(i).getGadget().getName());
+            if(reservationViewHolder.gadgetTitle.getText().toString().contains("IPhone")) {
+                reservationViewHolder.gadgetPhoto.setImageResource(R.mipmap.ic_apple);
+            } else if(reservationViewHolder.gadgetTitle.getText().toString().contains("Android")) {
+                reservationViewHolder.gadgetPhoto.setImageResource(R.drawable.ic_android_black_24dp);
+            } else {
+                reservationViewHolder.gadgetPhoto.setImageResource(R.drawable.ic_help_outline_black_24dp);
+            }
+            //reservationViewHolder.personPhoto.setImageResource(persons.get(i).photoId);
+        } catch (NullPointerException e) {
+            LibraryService.deleteReservation(reservations.get(i), new Callback<Boolean>() {
+                @Override
+                public void onCompletion(Boolean input) {
+                   Log.v("error", "Gadget Deleted");
+
+                }
+
+                @Override
+                public void onError(String message) {
+
+                }
+            });
         }
-        //reservationViewHolder.personPhoto.setImageResource(persons.get(i).photoId);
     }
 
     @Override

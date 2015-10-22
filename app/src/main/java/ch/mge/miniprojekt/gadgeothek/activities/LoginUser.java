@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,27 +35,31 @@ public class LoginUser extends GadgeothekMain {
                 EditText tvPassword = (EditText) findViewById(R.id.EditTextPassword);
                 final String email = tvEmail.getText().toString();
                 String password = tvPassword.getText().toString();
-                LibraryService.login(email, password, new Callback<Boolean>() {
-                    @Override
-                    public void onCompletion(Boolean success) {
-                        if (success) {
-                            // Jetzt sind wir eingeloggt
-                            TextView loginName = (TextView)findViewById(R.id.drawer_header_login_name);
-                            loginName.setText(email);
-                            Toast.makeText(LoginUser.this, "Logged in", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginUser.this, LoanUser.class);
-                            startActivity(intent);
-                        } else {
-                            // Passwort war falsch oder User unbekannt.
-                            Toast.makeText(LoginUser.this, "Login failed", Toast.LENGTH_SHORT).show();
+                try {
+                    LibraryService.login(email, password, new Callback<Boolean>() {
+                        @Override
+                        public void onCompletion(Boolean success) {
+                            if (success) {
+                                // Jetzt sind wir eingeloggt
+                                TextView loginName = (TextView)findViewById(R.id.drawer_header_login_name);
+                                loginName.setText(email);
+                                Toast.makeText(LoginUser.this, "Logged in", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoginUser.this, LoanUser.class);
+                                startActivity(intent);
+                            } else {
+                                // Passwort war falsch oder User unbekannt.
+                                Toast.makeText(LoginUser.this, "Login failed", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(LoginUser.this, "error", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onError(String message) {
+                            Toast.makeText(LoginUser.this, "error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } catch (Exception e) {
+                    Log.d("Exception", "Login");
+                }
             }
         });
 
