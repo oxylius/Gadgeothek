@@ -22,15 +22,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.loginUser"
+            android:name=".activities.LoginUser"
             android:label="@string/title_activity_register_login" >
         </activity>
         <activity
-            android:name=".activities.registerUser"
+            android:name=".activities.RegisterUser"
             android:label="@string/title_activity_register_user" >
         </activity>
         <activity
-            android:name=".activities.LoanUser"
+            android:name=".activities.LoansActivity"
             android:label="@string/title_activity_loan_user" >
         </activity>
         <activity

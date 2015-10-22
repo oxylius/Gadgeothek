@@ -3,6 +3,7 @@ package ch.mge.miniprojekt.gadgeothek.activities;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +13,7 @@ import ch.mge.miniprojekt.gadgeothek.R;
 import ch.mge.miniprojekt.gadgeothek.service.Callback;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
-public class registerUser extends GadgeothekMain {
+public class RegisterUser extends GadgeothekMain {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,23 +55,27 @@ public class registerUser extends GadgeothekMain {
                 String password = tvPassword.getText().toString();
                 String name = tvName.getText().toString();
                 String studentenNummer = tvMatrikelnumber.getText().toString();
-                LibraryService.register(email, password, name, studentenNummer, new Callback<Boolean>() {
-                    @Override
-                    public void onCompletion(Boolean success) {
-                        if (success) {
-                            // Jetzt sind wir eingeloggt
-                            Toast.makeText(registerUser.this, "Registrierung erfolgreich!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // Passwort war falsch oder User unbekannt.
-                            Toast.makeText(registerUser.this, "Registrierung fehlgeschlagen!", Toast.LENGTH_SHORT).show();
+                try {
+                    LibraryService.register(email, password, name, studentenNummer, new Callback<Boolean>() {
+                        @Override
+                        public void onCompletion(Boolean success) {
+                            if (success) {
+                                // Jetzt sind wir eingeloggt
+                                Toast.makeText(RegisterUser.this, "Registrierung erfolgreich!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Passwort war falsch oder User unbekannt.
+                                Toast.makeText(RegisterUser.this, "Registrierung fehlgeschlagen!", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(registerUser.this, "Registrierung Error!", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onError(String message) {
+                            Toast.makeText(RegisterUser.this, "Registrierung Error!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } catch (Exception e) {
+                    Log.d("Exception", "register");
+                }
             }
         });
     }
