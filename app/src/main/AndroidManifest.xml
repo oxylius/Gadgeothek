@@ -30,7 +30,7 @@
             android:label="@string/title_activity_register_user" >
         </activity>
         <activity
-            android:name=".activities.LoanUser"
+            android:name=".activities.LoansActivity"
             android:label="@string/title_activity_loan_user" >
         </activity>
         <activity

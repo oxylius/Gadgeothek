@@ -13,7 +13,7 @@ import ch.mge.miniprojekt.gadgeothek.domain.Loan;
 import ch.mge.miniprojekt.gadgeothek.service.Callback;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
-public class LoanUser extends GadgeothekMain {
+public class LoansActivity extends GadgeothekMain {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,21 +28,20 @@ public class LoanUser extends GadgeothekMain {
                     rvLoans.setHasFixedSize(true);
                     LoansAdapter adapter = new LoansAdapter(input);
                     rvLoans.setAdapter(adapter);
-                    rvLoans.setLayoutManager(new LinearLayoutManager(LoanUser.this));
+                    rvLoans.setLayoutManager(new LinearLayoutManager(LoansActivity.this));
                 }
 
                 @Override
                 public void onError(String message) {
-                    Toast.makeText(LoanUser.this, message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoansActivity.this, message, Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (IllegalStateException e) {
-            Intent intent = new Intent(LoanUser.this, LoginUser.class);
+            Intent intent = new Intent(LoansActivity.this, LoginUser.class);
             startActivity(intent);
         } catch (Exception e) {
             Log.d("Exception", "getLoansForCustomer");
         }
-
     }
 }
 
