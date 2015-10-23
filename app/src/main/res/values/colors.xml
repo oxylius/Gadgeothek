@@ -4,4 +4,5 @@
     <color name="primary_dark">#274165</color>
     <color name="accent">#f75d00</color>
     <color name="delete_red">#cf1f09</color>
+    <color name="green">#FF3A7E38</color>
 </resources>

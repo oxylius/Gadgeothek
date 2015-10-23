@@ -3,12 +3,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="ch.mge.miniprojekt.gadgeothek.activities.AddReservationActivity">
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/gadget_container"
-        android:padding="16dp"
-        />
-
-
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/gadget_container"
+            android:padding="16dp"
+            />
 </RelativeLayout>
