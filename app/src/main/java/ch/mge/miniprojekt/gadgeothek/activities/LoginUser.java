@@ -54,7 +54,7 @@ public class LoginUser extends GadgeothekMain {
 
                         @Override
                         public void onError(String message) {
-                            Toast.makeText(loginUser.this, "error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginUser.this, "error", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } catch (Exception e) {

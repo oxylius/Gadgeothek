@@ -112,17 +112,17 @@ public class GadgeothekMain extends AppCompatActivity {
                         else Snackbar.make(findViewById(R.id.activity_container), "Not Logged in!", Snackbar.LENGTH_SHORT).setAction("Login", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                startActivity(new Intent(GadgeothekMain.this, loginUser.class));
+                                startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
                             }
                         }).show();
                         break;
                     case R.id.navigation_item_loan:
                         if(LibraryService.isLoggedIn())
-                            startActivity(new Intent(GadgeothekMain.this, LoanUser.class));
+                            startActivity(new Intent(GadgeothekMain.this, LoansActivity.class));
                         else Snackbar.make(findViewById(R.id.activity_container), "Not Logged in!", Snackbar.LENGTH_SHORT).setAction("Login", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                startActivity(new Intent(GadgeothekMain.this, loginUser.class));
+                                startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
                             }
                         }).show();
                         break;
