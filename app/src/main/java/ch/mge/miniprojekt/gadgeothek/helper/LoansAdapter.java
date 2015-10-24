@@ -82,7 +82,7 @@ public class LoansAdapter extends
 
 
             TextView pickupDateTV = viewHolder.pickupDateTextView;
-            pickupDateTV.setText(result.toString());
+            pickupDateTV.setText("Return : " + result.toString());
 
     }
     @Override

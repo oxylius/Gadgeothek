@@ -86,7 +86,6 @@ public class LoginUser extends GadgeothekMain {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String pw = s.toString();
                 if (s.length() < 5) {
                     password.setError("Passwort muss min. 5 Zeichen lang sein.");
                 } else {

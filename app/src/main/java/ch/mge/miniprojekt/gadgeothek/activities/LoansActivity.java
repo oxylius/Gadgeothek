@@ -18,7 +18,7 @@ public class LoansActivity extends GadgeothekMain {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setActivityTitle("My loaned Gadgets");
+        setActivityTitle("Loaned Gadgets");
         setContentView(R.layout.activity_loan_user);
         try {
             LibraryService.getLoansForCustomer(new Callback<List<Loan>>() {
