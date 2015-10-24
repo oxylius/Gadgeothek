@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import ch.mge.miniprojekt.gadgeothek.R;
@@ -101,7 +102,11 @@ public class GadgeothekMain extends AppCompatActivity {
                         startActivity(new Intent(GadgeothekMain.this, LibrarySelectionActivity.class));
                         break;
                     case R.id.navigation_item_login:
-                        startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
+                        //if(getLoginText().equals("Logged out")) {
+                            startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
+                        //} else if(getLoginText().equals("Logged in")) {
+                        //    startActivity(new Intent(GadgeothekMain.this, LogoutUser.class));
+                        //}
                         break;
                     case R.id.navigation_item_register:
                         startActivity(new Intent(GadgeothekMain.this, RegisterUser.class));
@@ -163,5 +168,18 @@ public class GadgeothekMain extends AppCompatActivity {
         editor.apply();
         Log.d("SharedPreferences", "Setting server to " + serverAddress);
     }
+
+    /*
+    public static String getLoginText() {
+        return mSettings.getString("LoginText", "null");
+    }
+    public static void setLoginText(String loginText) {
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putString("LoginText", loginText);
+        editor.apply();
+        Log.d("SharedPreferences", loginText);
+    }
+
+    */
 
 }

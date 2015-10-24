@@ -10,8 +10,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +29,8 @@ public class LoginUser extends GadgeothekMain {
         Button lButton  = (Button) findViewById(R.id.logButton);
         Button rButton = (Button) findViewById(R.id.regButton);
 
+        final TextView tvDrawerHeaderLogin = (TextView) findViewById(R.id.drawer_header_login_name);
+
         lButton.setOnClickListener(new View.OnClickListener() {
             @Override
             
@@ -45,6 +45,8 @@ public class LoginUser extends GadgeothekMain {
                         public void onCompletion(Boolean success) {
                             if (success) {
                                 // Jetzt sind wir eingeloggt
+                                tvDrawerHeaderLogin.setText("Logged in");
+                                //setLoginText("Logged in");
                                 Snackbar.make(v, "Logged in", Snackbar.LENGTH_LONG).show();
                             } else {
                                 // Passwort war falsch oder User unbekannt.
