@@ -1,6 +1,7 @@
 package ch.mge.miniprojekt.gadgeothek.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -21,8 +22,8 @@ public class RegisterUser extends GadgeothekMain {
         super.setActivityTitle("Register");
         setContentView(R.layout.activity_register_user);
 
-        final EditText password = (EditText) findViewById(R.id.EditTextPassword);
-        password.addTextChangedListener(new TextWatcher() {
+        final TextInputLayout password = (TextInputLayout) findViewById(R.id.EditTextPassword);
+        password.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

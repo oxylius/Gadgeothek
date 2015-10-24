@@ -75,15 +75,14 @@ public class LoansAdapter extends
         TextView nameTV = viewHolder.nameTextView;
         nameTV.setText(loans.getGadget().getName());
 
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(loans.getPickupDate());
-            cal.add(Calendar.DATE, 7);
-            Date result = cal.getTime();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(loans.getPickupDate());
+        cal.add(Calendar.DATE, 7);
+        Date result = cal.getTime();
 
 
-            TextView pickupDateTV = viewHolder.pickupDateTextView;
-            pickupDateTV.setText("Return : " + result.toString());
-
+        TextView pickupDateTV = viewHolder.pickupDateTextView;
+        pickupDateTV.setText("Return Date : " + result.toString());
     }
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
