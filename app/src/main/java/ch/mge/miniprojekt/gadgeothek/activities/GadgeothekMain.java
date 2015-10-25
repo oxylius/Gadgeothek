@@ -108,6 +108,9 @@ public class GadgeothekMain extends AppCompatActivity {
                         //    startActivity(new Intent(GadgeothekMain.this, LogoutUser.class));
                         //}
                         break;
+                    case R.id.navigation_item_logout:
+                        startActivity(new Intent(GadgeothekMain.this, LogoutUser.class));
+                        break;
                     case R.id.navigation_item_register:
                         startActivity(new Intent(GadgeothekMain.this, RegisterUser.class));
                         break;

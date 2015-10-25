@@ -35,9 +35,11 @@ public class LogoutUser extends GadgeothekMain {
                         tvDrawerHeaderLogin.setText("Logged out");
                         //setLoginText("Logged out");
                         //Snackbar.make(v, "Logged out", Snackbar.LENGTH_LONG).show();
+                        Toast.makeText(LogoutUser.this, "Logged out", Toast.LENGTH_SHORT).show();
                     } else {
                         // Passwort war falsch oder User unbekannt.
                         //Snackbar.make(v, "Logout failed", Snackbar.LENGTH_LONG).show();
+                        Toast.makeText(LogoutUser.this, "Logout failed", Toast.LENGTH_SHORT).show();
                     }
                 }
 

@@ -40,6 +40,7 @@
     <string name="title_activity_second">SecondActivity</string>
     <string name="nav_item_register">Register</string>
     <string name="nav_item_login">Login</string>
+    <string name="nav_item_logout">Logout</string>
     <string name="nav_sub_menu_config">Config</string>
     <string name="nav_item_loan">Loan</string>
     <string name="nav_item_reservation">Reservation</string>
