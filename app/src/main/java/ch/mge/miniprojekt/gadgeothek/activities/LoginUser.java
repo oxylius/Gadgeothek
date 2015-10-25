@@ -4,6 +4,7 @@ package ch.mge.miniprojekt.gadgeothek.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
@@ -23,14 +24,19 @@ import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 public class LoginUser extends GadgeothekMain {
 
     final String SET_SERVER = "navigation_item_set_server";
-    private Context context;
+    Handler mHandler = new Handler();
+    private Runnable mLaunchTask = new Runnable() {
+        public void run() {
+            Intent i = new Intent(getApplicationContext(),LoansActivity.class);
+            startActivity(i);
+        }
+    };
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setActivityTitle("Login");
         setContentView(R.layout.activity_login_user);
-
-        context = this;
 
         Button lButton  = (Button) findViewById(R.id.logButton);
         Button rButton = (Button) findViewById(R.id.regButton);
@@ -51,6 +57,7 @@ public class LoginUser extends GadgeothekMain {
                                 // Jetzt sind wir eingeloggt
                                 changeDrawerHeader(email);
                                 Snackbar.make(v, "Logged in as: " + email, Snackbar.LENGTH_LONG).show();
+                                mHandler.postDelayed(mLaunchTask, 1250);
                             } else {
                                 // Passwort war falsch oder User unbekannt.
                                 Snackbar.make(v, "Login failed", Snackbar.LENGTH_LONG).show();
@@ -65,14 +72,6 @@ public class LoginUser extends GadgeothekMain {
                 } catch (Exception e) {
                     Log.d("Exception", "Login");
                 }
-            }
-        });
-
-        rButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginUser.this, RegisterUser.class);
-                startActivity(intent);
             }
         });
 

@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:text="m@hsr.ch"
-            android:hint="E-Mail" />
+            android:hint="@string/email" />
 
     </android.support.design.widget.TextInputLayout>
     //Password
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:text="12345"
-            android:hint="Password" />
+            android:hint="@string/password" />
 
     </android.support.design.widget.TextInputLayout>
     <Button
@@ -38,15 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/EditTextPassword"
-        android:text="Login"
+        android:text="@string/login"
         android:id="@+id/logButton"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/logButton"
-        android:text="Register"
-        android:id="@+id/regButton"/>
 
 </RelativeLayout>
 

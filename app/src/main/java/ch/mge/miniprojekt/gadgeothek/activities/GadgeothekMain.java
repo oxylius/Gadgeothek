@@ -80,7 +80,6 @@ public class GadgeothekMain extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-
             }
 
             @Override
@@ -109,7 +108,23 @@ public class GadgeothekMain extends AppCompatActivity {
                         break;
                     case R.id.navigation_item_login:
                         //toggleLogin();
-                        startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
+                        if(LibraryService.isLoggedIn()){
+                            LibraryService.logout(new Callback<Boolean>() {
+                                @Override
+                                public void onCompletion(Boolean input) {
+                                    changeDrawerHeader("Logged out");
+                                    Snackbar.make(findViewById(R.id.activity_container), "Logged out!!", Snackbar.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onError(String message) {
+                                    Snackbar.make(findViewById(R.id.activity_container), "Error while logging out!!", Snackbar.LENGTH_SHORT).show();
+                                }
+                            });
+                        } else {
+                            startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
+                        }
+
                         break;
 /*                    case R.id.navigation_item_logout:
                         LibraryService.logout(new Callback<Boolean>() {
@@ -172,7 +187,11 @@ public class GadgeothekMain extends AppCompatActivity {
         mSettings = PreferenceManager.getDefaultSharedPreferences(this);
 
         setTitle(activityTitle);
-        ((TextView)findViewById(R.id.drawer_header_login_name)).setText(mSettings.getString("LoginName", "Logged Out"));
+        if(LibraryService.isLoggedIn()){
+            ((TextView)findViewById(R.id.drawer_header_login_name)).setText(mSettings.getString("LoginName", "Logged Out"));
+            mNavigationView.getMenu().findItem(R.id.navigation_item_login).setTitle("Logout");
+        }
+
 
     }
 
