@@ -22,12 +22,14 @@ import ch.mge.miniprojekt.gadgeothek.domain.Loan;
 
 public class LoansAdapter extends
     RecyclerView.Adapter<LoansAdapter.ViewHolder> {
+    private final Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         ImageView itemImage;
         TextView nameTextView;
         TextView pickupDateTextView;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -40,8 +42,10 @@ public class LoansAdapter extends
 
     private List<Loan> mLoans;
 
-    public LoansAdapter(List<Loan> loans) {
+    public LoansAdapter(List<Loan> loans, Context context) {
+
         this.mLoans = loans;
+        this.context = context;
     }
 
     @Override
@@ -75,15 +79,19 @@ public class LoansAdapter extends
         TextView nameTV = viewHolder.nameTextView;
         nameTV.setText(loans.getGadget().getName());
 
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(loans.getPickupDate());
-            cal.add(Calendar.DATE, 7);
-            Date result = cal.getTime();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(loans.getPickupDate());
+        cal.add(Calendar.DATE, 7);
+        Date result = cal.getTime();
+        Date currentDate = new Date();
+        if(currentDate.after(result)) {
+            viewHolder.cv.setCardBackgroundColor(context.getResources().getColor(R.color.delete_red));
+        } else if (currentDate.before(result)) {
+            viewHolder.cv.setCardBackgroundColor(context.getResources().getColor(R.color.green));
+        }
 
-
-            TextView pickupDateTV = viewHolder.pickupDateTextView;
-            pickupDateTV.setText(result.toString());
-
+        TextView pickupDateTV = viewHolder.pickupDateTextView;
+        pickupDateTV.setText("Return Date : " + result.toString());
     }
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {

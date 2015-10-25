@@ -23,6 +23,10 @@
                 android:title="@string/nav_item_login"/>
 
             <item
+                android:id="@+id/navigation_item_logout"
+                android:icon="@drawable/ic_input_black_24dp"
+                android:title="@string/nav_item_logout" />
+            <item
                 android:id="@+id/navigation_item_set_server"
                 android:icon="@drawable/ic_settings_black_24dp"
                 android:title="@string/nav_item_set_server" />

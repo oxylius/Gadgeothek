@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import ch.mge.miniprojekt.gadgeothek.R;
@@ -80,6 +81,7 @@ public class GadgeothekMain extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(View drawerView) {
+
             }
 
             @Override
@@ -107,40 +109,8 @@ public class GadgeothekMain extends AppCompatActivity {
                         startActivity(new Intent(GadgeothekMain.this, LibrarySelectionActivity.class));
                         break;
                     case R.id.navigation_item_login:
-                        //toggleLogin();
-                        if(LibraryService.isLoggedIn()){
-                            LibraryService.logout(new Callback<Boolean>() {
-                                @Override
-                                public void onCompletion(Boolean input) {
-                                    changeDrawerHeader("Logged out");
-                                    Snackbar.make(findViewById(R.id.activity_container), "Logged out!!", Snackbar.LENGTH_SHORT).show();
-                                }
-
-                                @Override
-                                public void onError(String message) {
-                                    Snackbar.make(findViewById(R.id.activity_container), "Error while logging out!!", Snackbar.LENGTH_SHORT).show();
-                                }
-                            });
-                        } else {
-                            startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
-                        }
-
+                        startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
                         break;
-/*                    case R.id.navigation_item_logout:
-                        LibraryService.logout(new Callback<Boolean>() {
-                            @Override
-                            public void onCompletion(Boolean input) {
-                                //toggleLogin();
-                                changeDrawerHeader("Logged out");
-                                Snackbar.make(findViewById(R.id.activity_container), "Logged out!!", Snackbar.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onError(String message) {
-                                Snackbar.make(findViewById(R.id.activity_container), "Error while logging out!!", Snackbar.LENGTH_SHORT).show();
-                            }
-                        });
-                        break;*/
                     case R.id.navigation_item_register:
                         startActivity(new Intent(GadgeothekMain.this, RegisterUser.class));
                         break;
@@ -214,9 +184,7 @@ public class GadgeothekMain extends AppCompatActivity {
         SharedPreferences.Editor editor = mSettings.edit();
         editor.putString("LoginName", newText);
         editor.apply();
-        //LinearLayout headerView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.drawer_header, null);
-        //TextView headerText = (TextView)mNavigationView.findViewById(R.id.drawer_header_login_name);
-        //headerText.setText(newText);
+ 
     }
 
 
