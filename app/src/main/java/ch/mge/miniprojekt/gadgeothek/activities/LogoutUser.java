@@ -1,17 +1,13 @@
 package ch.mge.miniprojekt.gadgeothek.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
-import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import ch.mge.miniprojekt.gadgeothek.R;
 import ch.mge.miniprojekt.gadgeothek.service.Callback;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
-
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class LogoutUser extends GadgeothekMain {
 

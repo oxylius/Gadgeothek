@@ -1,7 +1,6 @@
 package ch.mge.miniprojekt.gadgeothek.activities;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,10 +11,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import ch.mge.miniprojekt.gadgeothek.R;
 import ch.mge.miniprojekt.gadgeothek.service.Callback;

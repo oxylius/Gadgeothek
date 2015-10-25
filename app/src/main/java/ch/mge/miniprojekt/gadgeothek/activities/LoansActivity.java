@@ -6,10 +6,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
+
 import java.util.List;
+
 import ch.mge.miniprojekt.gadgeothek.R;
-import ch.mge.miniprojekt.gadgeothek.helper.LoansAdapter;
 import ch.mge.miniprojekt.gadgeothek.domain.Loan;
+import ch.mge.miniprojekt.gadgeothek.helper.LoansAdapter;
 import ch.mge.miniprojekt.gadgeothek.service.Callback;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
