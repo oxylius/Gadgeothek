@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ch.mge.miniprojekt.gadgeothek.R;
+import ch.mge.miniprojekt.gadgeothek.service.Callback;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
 
@@ -103,7 +104,23 @@ public class GadgeothekMain extends AppCompatActivity {
                         startActivity(new Intent(GadgeothekMain.this, LibrarySelectionActivity.class));
                         break;
                     case R.id.navigation_item_login:
-                        startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
+                        if(LibraryService.isLoggedIn()){
+                            LibraryService.logout(new Callback<Boolean>() {
+                                @Override
+                                public void onCompletion(Boolean input) {
+                                    changeDrawerHeader("Logged out");
+                                    Snackbar.make(findViewById(R.id.activity_container), "Logged out!!", Snackbar.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onError(String message) {
+                                    Snackbar.make(findViewById(R.id.activity_container), "Error while logging out!!", Snackbar.LENGTH_SHORT).show();
+                                }
+                            });
+                        } else {
+                            startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
+                        }
+
                         break;
                     case R.id.navigation_item_register:
                         startActivity(new Intent(GadgeothekMain.this, RegisterUser.class));
