@@ -1,6 +1,7 @@
 package ch.mge.miniprojekt.gadgeothek.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,18 +14,24 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import ch.mge.miniprojekt.gadgeothek.R;
+import ch.mge.miniprojekt.gadgeothek.service.Callback;
 import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
 
 public class GadgeothekMain extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
+    static NavigationView mNavigationView;
     private String activityTitle;
     static SharedPreferences mSettings;
 
@@ -64,7 +71,7 @@ public class GadgeothekMain extends AppCompatActivity {
         FrameLayout activityContainer = (FrameLayout) fullView.findViewById(R.id.activity_content);
         getLayoutInflater().inflate(layoutResID, activityContainer, true);
 
-        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener(){
+        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
 
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -90,41 +97,59 @@ public class GadgeothekMain extends AppCompatActivity {
 
         super.setContentView(fullView);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_View);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_View);
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
+            public boolean onNavigationItemSelected(final MenuItem menuItem) {
                 menuItem.setChecked(true);
                 mDrawerLayout.closeDrawers();
-                switch(menuItem.getItemId()) {
+                switch (menuItem.getItemId()) {
                     case R.id.navigation_item_set_server:
                         startActivity(new Intent(GadgeothekMain.this, LibrarySelectionActivity.class));
                         break;
                     case R.id.navigation_item_login:
+                        //toggleLogin();
                         startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
                         break;
+/*                    case R.id.navigation_item_logout:
+                        LibraryService.logout(new Callback<Boolean>() {
+                            @Override
+                            public void onCompletion(Boolean input) {
+                                //toggleLogin();
+                                changeDrawerHeader("Logged out");
+                                Snackbar.make(findViewById(R.id.activity_container), "Logged out!!", Snackbar.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(String message) {
+                                Snackbar.make(findViewById(R.id.activity_container), "Error while logging out!!", Snackbar.LENGTH_SHORT).show();
+                            }
+                        });
+                        break;*/
                     case R.id.navigation_item_register:
                         startActivity(new Intent(GadgeothekMain.this, RegisterUser.class));
                         break;
                     case R.id.navigation_item_reservation:
-                        if(LibraryService.isLoggedIn())
+                        if (LibraryService.isLoggedIn())
                             startActivity(new Intent(GadgeothekMain.this, ReservationActivity.class));
-                        else Snackbar.make(findViewById(R.id.activity_container), "Not Logged in!", Snackbar.LENGTH_SHORT).setAction("Login", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
-                            }
-                        }).show();
+                        else
+                            Snackbar.make(findViewById(R.id.activity_container), "Not Logged in!", Snackbar.LENGTH_SHORT).setAction("Login", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
+                                }
+                            }).show();
                         break;
                     case R.id.navigation_item_loan:
-                        if(LibraryService.isLoggedIn())
+                        if (LibraryService.isLoggedIn())
                             startActivity(new Intent(GadgeothekMain.this, LoansActivity.class));
-                        else Snackbar.make(findViewById(R.id.activity_container), "Not Logged in!", Snackbar.LENGTH_SHORT).setAction("Login", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
-                            }
-                        }).show();
+                        else
+                            Snackbar.make(findViewById(R.id.activity_container), "Not Logged in!", Snackbar.LENGTH_SHORT).setAction("Login", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(GadgeothekMain.this, LoginUser.class));
+                                }
+                            }).show();
                         break;
                     default:
                         Toast.makeText(GadgeothekMain.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
@@ -147,6 +172,8 @@ public class GadgeothekMain extends AppCompatActivity {
         mSettings = PreferenceManager.getDefaultSharedPreferences(this);
 
         setTitle(activityTitle);
+        ((TextView)findViewById(R.id.drawer_header_login_name)).setText(mSettings.getString("LoginName", "Logged Out"));
+
     }
 
     public void setActivityTitle(String s) {
@@ -163,5 +190,15 @@ public class GadgeothekMain extends AppCompatActivity {
         editor.apply();
         Log.d("SharedPreferences", "Setting server to " + serverAddress);
     }
+
+    public static void changeDrawerHeader(String newText) {
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putString("LoginName", newText);
+        editor.apply();
+        //LinearLayout headerView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.drawer_header, null);
+        //TextView headerText = (TextView)mNavigationView.findViewById(R.id.drawer_header_login_name);
+        //headerText.setText(newText);
+    }
+
 
 }

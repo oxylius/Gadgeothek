@@ -11,7 +11,7 @@
     </group>
 
     <item android:title="@string/nav_sub_menu_config">
-        <menu>
+        <menu android:id="@+id/menu_config">
             <item
                 android:id="@+id/navigation_item_register"
                 android:icon="@drawable/ic_person_add_black_24dp"
@@ -20,7 +20,8 @@
             <item
                 android:id="@+id/navigation_item_login"
                 android:icon="@drawable/ic_input_black_24dp"
-                android:title="@string/nav_item_login" />
+                android:title="@string/nav_item_login"/>
+
             <item
                 android:id="@+id/navigation_item_set_server"
                 android:icon="@drawable/ic_settings_black_24dp"

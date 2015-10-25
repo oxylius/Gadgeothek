@@ -1,6 +1,7 @@
 package ch.mge.miniprojekt.gadgeothek.activities;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -22,11 +23,14 @@ import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 public class LoginUser extends GadgeothekMain {
 
     final String SET_SERVER = "navigation_item_set_server";
+    private Context context;
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setActivityTitle("Login");
         setContentView(R.layout.activity_login_user);
+
+        context = this;
 
         Button lButton  = (Button) findViewById(R.id.logButton);
         Button rButton = (Button) findViewById(R.id.regButton);
@@ -45,7 +49,8 @@ public class LoginUser extends GadgeothekMain {
                         public void onCompletion(Boolean success) {
                             if (success) {
                                 // Jetzt sind wir eingeloggt
-                                Snackbar.make(v, "Logged in", Snackbar.LENGTH_LONG).show();
+                                changeDrawerHeader(email);
+                                Snackbar.make(v, "Logged in as: " + email, Snackbar.LENGTH_LONG).show();
                             } else {
                                 // Passwort war falsch oder User unbekannt.
                                 Snackbar.make(v, "Login failed", Snackbar.LENGTH_LONG).show();
@@ -54,7 +59,7 @@ public class LoginUser extends GadgeothekMain {
 
                         @Override
                         public void onError(String message) {
-                            Toast.makeText(LoginUser.this, "error", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Login Error", Snackbar.LENGTH_SHORT).show();
                         }
                     });
                 } catch (Exception e) {

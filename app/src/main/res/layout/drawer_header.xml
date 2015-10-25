@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/drawer_header_login_name"
-        android:text="Logged out"
+        android:text="@string/Logged_out"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 
