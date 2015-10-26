@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +38,6 @@ public class LoansAdapter extends
     }
 
     private List<Loan> mLoans;
-
     public LoansAdapter(List<Loan> loans, Context context) {
 
         this.mLoans = loans;
@@ -48,21 +48,14 @@ public class LoansAdapter extends
     public LoansAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-
-        // Inflate the custom layout
         View loanView = inflater.inflate(R.layout.item_loans, parent, false);
-
-        // Return a new holder instance
         return new ViewHolder(loanView);
     }
 
-    // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(LoansAdapter.ViewHolder viewHolder, int position) {
-        // Get the data model based on position
         Loan loans = mLoans.get(position);
 
-        // Set item views based on the data model
         ImageView photoIV = viewHolder.itemImage;
         if(loans.getGadget().getName().contains("IPhone")) {
             photoIV.setImageResource(R.mipmap.ic_apple);
@@ -79,6 +72,7 @@ public class LoansAdapter extends
         cal.setTime(loans.getPickupDate());
         cal.add(Calendar.DATE, 7);
         Date result = cal.getTime();
+        SimpleDateFormat dt = new SimpleDateFormat("dd.MM.yyyy");
         Date currentDate = new Date();
         if(currentDate.after(result)) {
             viewHolder.cv.setCardBackgroundColor(context.getResources().getColor(R.color.delete_red));
@@ -87,14 +81,13 @@ public class LoansAdapter extends
         }
 
         TextView pickupDateTV = viewHolder.pickupDateTextView;
-        pickupDateTV.setText("Return Date : " + result.toString());
+        pickupDateTV.setText("Return Date : " + dt.format(result));
     }
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-    // Return the total count of items
     @Override
     public int getItemCount() {
         return mLoans.size();

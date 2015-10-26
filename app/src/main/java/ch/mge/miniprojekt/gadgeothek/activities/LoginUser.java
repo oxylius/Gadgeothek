@@ -18,7 +18,6 @@ import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
 public class LoginUser extends GadgeothekMain {
 
-    final String SET_SERVER = "navigation_item_set_server";
     Handler mHandler = new Handler();
     private Runnable mLaunchTask = new Runnable() {
         public void run() {
@@ -34,8 +33,6 @@ public class LoginUser extends GadgeothekMain {
         setContentView(R.layout.activity_login_user);
 
         Button lButton  = (Button) findViewById(R.id.logButton);
-        Button rButton = (Button) findViewById(R.id.regButton);
-
         lButton.setOnClickListener(new View.OnClickListener() {
             @Override
             
@@ -49,12 +46,10 @@ public class LoginUser extends GadgeothekMain {
                         @Override
                         public void onCompletion(Boolean success) {
                             if (success) {
-                                // Jetzt sind wir eingeloggt
                                 changeDrawerHeader(email);
                                 Snackbar.make(v, "Logged in as: " + email, Snackbar.LENGTH_LONG).show();
-                                mHandler.postDelayed(mLaunchTask, 1250);
+                                mHandler.postDelayed(mLaunchTask, 1000);
                             } else {
-                                // Passwort war falsch oder User unbekannt.
                                 Snackbar.make(v, "Login failed", Snackbar.LENGTH_LONG).show();
                             }
                         }
@@ -70,8 +65,6 @@ public class LoginUser extends GadgeothekMain {
             }
         });
 
-
-        //password lButton input validation
         final TextInputLayout password = (TextInputLayout) findViewById(R.id.EditTextPassword);
         password.getEditText().addTextChangedListener(new TextWatcher() {
             @Override

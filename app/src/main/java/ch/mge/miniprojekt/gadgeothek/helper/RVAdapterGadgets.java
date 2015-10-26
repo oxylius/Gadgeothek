@@ -11,13 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 import ch.mge.miniprojekt.gadgeothek.R;
 import ch.mge.miniprojekt.gadgeothek.domain.Gadget;
@@ -122,10 +120,6 @@ public class RVAdapterGadgets extends RecyclerView.Adapter<RVAdapterGadgets.Gadg
         ((DecimalFormat) formatter).setDecimalFormatSymbols(dfs);
 
         GadgetViewHolder.gadgetDetailPrice.setText(formatter.format(gadgets.get(i).getPrice()));
-        //GadgetViewHolder.price.setText((int) gadgets.get(i).getPrice());
-
-
-        //GadgetViewHolder.personPhoto.setImageResource(persons.get(i).photoId);
     }
 
     @Override

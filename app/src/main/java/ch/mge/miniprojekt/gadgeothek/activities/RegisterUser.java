@@ -60,14 +60,11 @@ public class RegisterUser extends GadgeothekMain {
                         @Override
                         public void onCompletion(Boolean success) {
                             if (success) {
-                                // Jetzt sind wir eingeloggt
                                 Toast.makeText(RegisterUser.this, "Registrierung erfolgreich!", Toast.LENGTH_SHORT).show();
                             } else {
-                                // Passwort war falsch oder User unbekannt.
                                 Toast.makeText(RegisterUser.this, "Registrierung fehlgeschlagen!", Toast.LENGTH_SHORT).show();
                             }
                         }
-
                         @Override
                         public void onError(String message) {
                             Toast.makeText(RegisterUser.this, "Registrierung Error!", Toast.LENGTH_SHORT).show();

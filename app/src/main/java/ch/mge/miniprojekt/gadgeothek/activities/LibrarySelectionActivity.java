@@ -5,9 +5,6 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Toast;
-
-import ch.mge.miniprojekt.gadgeothek.service.LibraryService;
 
 import ch.mge.miniprojekt.gadgeothek.R;
 
@@ -19,8 +16,6 @@ public class LibrarySelectionActivity extends GadgeothekMain {
         super.setActivityTitle("Set Server");
         setContentView(R.layout.activity_library_selection);
 
-
-        //Autocomplete TextView
         AutoCompleteTextView serverAddressElement = (AutoCompleteTextView) findViewById(R.id.serverAddressAutoComplete);
         String[] defaultServers = getResources().getStringArray(R.array.default_servers_array);
         ArrayAdapter<String> adapter =

@@ -85,8 +85,6 @@ public class ReservationActivity extends GadgeothekMain {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                //Remove swiped item from list and notify the RecyclerView
-                final int position = viewHolder.getAdapterPosition();
                 adapter.onItemDismiss(viewHolder.getAdapterPosition(), rv);
 
             }
@@ -100,7 +98,6 @@ public class ReservationActivity extends GadgeothekMain {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Refresh items
                 LibraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
                     @Override
                     public void onCompletion(List<Reservation> reservations) {
@@ -145,8 +142,6 @@ public class ReservationActivity extends GadgeothekMain {
                     emptyReservations.setVisibility(View.VISIBLE);
                     emptyReservationsImage.setVisibility(View.VISIBLE);
                 }
-
-
             }
 
             @Override

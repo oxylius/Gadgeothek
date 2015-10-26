@@ -43,9 +43,6 @@ public class GadgeothekMain extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         switch (id) {
@@ -109,12 +106,12 @@ public class GadgeothekMain extends AppCompatActivity {
                                 @Override
                                 public void onCompletion(Boolean input) {
                                     changeDrawerHeader("Logged out");
-                                    Snackbar.make(findViewById(R.id.activity_container), "Logged out!!", Snackbar.LENGTH_SHORT).show();
+                                    Snackbar.make(findViewById(R.id.activity_container), "Logged out!", Snackbar.LENGTH_SHORT).show();
                                 }
 
                                 @Override
                                 public void onError(String message) {
-                                    Snackbar.make(findViewById(R.id.activity_container), "Error while logging out!!", Snackbar.LENGTH_SHORT).show();
+                                    Snackbar.make(findViewById(R.id.activity_container), "Error while logging out!", Snackbar.LENGTH_SHORT).show();
                                 }
                             });
                         } else {
@@ -154,8 +151,6 @@ public class GadgeothekMain extends AppCompatActivity {
             }
         });
 
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if(getSupportActionBar() != null) {
@@ -172,8 +167,6 @@ public class GadgeothekMain extends AppCompatActivity {
             ((TextView)findViewById(R.id.drawer_header_login_name)).setText(mSettings.getString("LoginName", "Logged Out"));
             mNavigationView.getMenu().findItem(R.id.navigation_item_login).setTitle("Logout");
         }
-
-
     }
 
     public void setActivityTitle(String s) {

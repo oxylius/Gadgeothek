@@ -2,8 +2,6 @@ package ch.mge.miniprojekt.gadgeothek.helper;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
-import android.graphics.Color;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -54,7 +51,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
             } else {
                 reservationViewHolder.gadgetPhoto.setImageResource(R.drawable.ic_help_outline_black_24dp);
             }
-            //reservationViewHolder.personPhoto.setImageResource(persons.get(i).photoId);
             reservationViewHolder.waitingPos.setText("Waiting Position: " + reservations.get(i).getWatingPosition());
             if(reservations.get(i).isReady()){
                 reservationViewHolder.cv.setCardBackgroundColor(context.getResources().getColor(R.color.green));
@@ -75,7 +71,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
                 }
             });
         }
-        //reservationViewHolder.personPhoto.setImageResource(persons.get(i).photoId);
     }
 
     @Override
@@ -121,7 +116,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ReservationViewHol
             cv = (CardView)itemView.findViewById(R.id.reservation_item);
             gadgetTitle = (TextView)itemView.findViewById(R.id.reservation_item_gadget_title);
             gadgetPhoto = (ImageView)itemView.findViewById(R.id.reservation_item_gadget_image);
-            //personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
             waitingPos = (TextView)itemView.findViewById(R.id.reservation_item_waiting_pos);
             waitingImage = (ImageView)itemView.findViewById(R.id.reservation_item_waiting_image);
         }
