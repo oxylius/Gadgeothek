@@ -1,6 +1,7 @@
 package ch.mge.miniprojekt.gadgeothek.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -38,6 +39,8 @@ public class RegisterUser extends GadgeothekMain {
             public void afterTextChanged(Editable s) {
                 if (s.length() < 5) {
                     password.setError("Passwort muss min. 5 Zeichen lang sein.");
+                } else {
+                    password.setErrorEnabled(false);
                 }
             }
         });
@@ -46,28 +49,29 @@ public class RegisterUser extends GadgeothekMain {
 
         rButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                EditText tvEmail = (EditText) findViewById(R.id.EditTextMail);
-                EditText tvPassword = (EditText) findViewById(R.id.EditTextPassword);
-                EditText tvName = (EditText) findViewById(R.id.EditTextName);
-                EditText tvMatrikelnumber = (EditText) findViewById(R.id.EditTextMatrikelnumber);
-                String email = tvEmail.getText().toString();
-                String password = tvPassword.getText().toString();
-                String name = tvName.getText().toString();
-                String studentenNummer = tvMatrikelnumber.getText().toString();
+            public void onClick(final View v) {
+                TextInputLayout tvEmail = (TextInputLayout) findViewById(R.id.EditTextMail);
+                TextInputLayout tvPassword = (TextInputLayout) findViewById(R.id.EditTextPassword);
+                TextInputLayout tvName = (TextInputLayout) findViewById(R.id.EditTextName);
+                TextInputLayout tvMatrikelnumber = (TextInputLayout) findViewById(R.id.EditTextMatrikelnumber);
+                String email = tvEmail.getEditText().getText().toString();
+                String password = tvPassword.getEditText().getText().toString();
+                String name = tvName.getEditText().getText().toString();
+                String studentenNummer = tvMatrikelnumber.getEditText().getText().toString();
                 try {
                     LibraryService.register(email, password, name, studentenNummer, new Callback<Boolean>() {
                         @Override
                         public void onCompletion(Boolean success) {
                             if (success) {
-                                Toast.makeText(RegisterUser.this, "Registrierung erfolgreich!", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(v, "Registrierung erfolgreich", Snackbar.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(RegisterUser.this, "Registrierung fehlgeschlagen!", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(v, "Registrierung fehlgeschlagen", Snackbar.LENGTH_LONG).show();
                             }
                         }
+
                         @Override
                         public void onError(String message) {
-                            Toast.makeText(RegisterUser.this, "Registrierung Error!", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v, "Registrierung error!", Snackbar.LENGTH_LONG).show();
                         }
                     });
                 } catch (Exception e) {

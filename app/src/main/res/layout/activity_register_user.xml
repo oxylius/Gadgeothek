@@ -51,28 +51,13 @@
             android:inputType="text"
             android:hint="Name"/>
     </android.support.design.widget.TextInputLayout>
-    <!--Address-->
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/EditTextAddress"
-        android:layout_below="@id/EditTextName">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:inputType="text"
-            android:hint="Address"/>
-
-    </android.support.design.widget.TextInputLayout>
 
     <!--Matrikelnumber-->
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/EditTextMatrikelnumber"
-        android:layout_below="@id/EditTextAddress">
+        android:layout_below="@id/EditTextName">
 
         <EditText
             android:layout_width="match_parent"
